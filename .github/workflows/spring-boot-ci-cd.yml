@@ -1,0 +1,81 @@
+name: Spring Boot CI/CD Pipeline to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'dev'
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  CI_CD:
+    runs-on: ubuntu-latest
+    #    permissions: 디폴트 설정은 read & write
+    #      contents: read
+    #      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin' # AdoptOpenJDK is now Eclipse Temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+        shell: bash
+
+      - name: Build with Gradle
+        env:
+          AWS_DB_USERNAME: ${{ secrets.AWS_DB_USERNAME }}
+          AWS_DB_PASSWORD: ${{ secrets.AWS_DB_PASSWORD }}
+          AWS_DB_URL: ${{ secrets.AWS_DB_URL }}
+        run: ./gradlew clean build --warning-mode all
+        shell: bash
+
+      - name: Get current time
+        uses: josStorer/get-current-time@v2 # https://github.com/josStorer/get-current-time/releases
+        id: current-time
+        with:
+          format: YYYY-MM-DDTHH-mm-ss
+          # utcOffset: "+09:00" UTC 기준
+          timezone: "Asia/Seoul"
+
+      - name: Show Current Time
+        run: echo "CurrentTime=$"
+        shell: bash
+
+      - name: Generate deployment package
+        run: |
+          mkdir -p deploy
+          cp -f build/libs/*-SNAPSHOT.jar deploy
+          mv deploy/*-SNAPSHOT.jar deploy/application.jar       
+          cp -f Procfile deploy
+          cp -f -r .ebextensions deploy
+          cp -f -r .platform deploy
+          cd deploy && zip -r deploy.zip .
+
+      #  CD:
+      #    needs: CI # https://github.com/marketplace/actions/beanstalk-deploy
+      #    runs-on: ubuntu-latest
+      #    steps:
+      #
+      #      - name: Checkout source code
+      #        uses: actions/checkout@v2
+
+      - name: Deploy to AWS Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: SpringBoot-ci-cd
+          environment_name: SpringBoot-ci-cd-env
+          version_label: github-action-${{ steps.current-time.outputs.formattedTime }}
+          region: ap-northeast-2
+          deployment_package: deploy/deploy.zip
+          wait_for_deployment: false
+          # wait_for_environment_recovery: 180
