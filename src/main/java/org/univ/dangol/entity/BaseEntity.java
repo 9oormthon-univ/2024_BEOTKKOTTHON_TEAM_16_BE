@@ -17,12 +17,8 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @NoArgsConstructor
 @Getter
-@Setter
 @ToString
 public class BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
     @CreatedDate
     protected LocalDateTime createdDate;
     @LastModifiedDate
