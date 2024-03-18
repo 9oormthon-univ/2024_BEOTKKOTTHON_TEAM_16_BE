@@ -2,6 +2,7 @@ package org.univ.dangol.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
+import org.univ.dangol.entity.Grade;
 
 @NoArgsConstructor
 @Setter
@@ -13,5 +14,5 @@ import lombok.*;
 public class UserDto {
     private Long id;
     private String nickName;
-    private int age;
+    private Grade grade;
 }
