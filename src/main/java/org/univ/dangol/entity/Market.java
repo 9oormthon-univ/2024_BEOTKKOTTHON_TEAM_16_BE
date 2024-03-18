@@ -1,11 +1,7 @@
 package org.univ.dangol.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -20,13 +16,10 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Shop {
+public class Market {
 
     @Id @GeneratedValue
-    private Long id;
-
-    @ManyToOne
-    private Market market;
+    private long id;
 
     @Column(length = 20)
     private String name;
@@ -48,5 +41,4 @@ public class Shop {
 
     @Column(length = 20)
     private String roadName;
-
 }

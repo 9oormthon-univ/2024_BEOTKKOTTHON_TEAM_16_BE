@@ -1,5 +1,6 @@
 package org.univ.dangol.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,23 +21,17 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class Collect {
 
     @Id @GeneratedValue
-    private Long id;
+    private long id;
 
-    @Column(length = 10)
-    private String name;
+    @ManyToOne
+    private Item item;
 
-    // 별도 grade 테이블 만들어야 함.
-    // 테스트를 위하여 임시로 String으로 저장함.
-    @Column(length = 20)
-    private String grade;
+    @ManyToOne
+    private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updatedAt;
-
+    private LocalDateTime collectedAt;
 }
