@@ -5,6 +5,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.ItemStatus;
 import org.univ.dangol.repository.GradeRepository;
@@ -33,9 +34,46 @@ public class DatabaseSeeding{
         private final ItemRepository itemRepository;
 
         public void dbGradeInit(){
-
-
-
+            if(gradeRepository.findById(1L).isEmpty()){
+                Grade grade = Grade.builder()
+                        .id(1L)
+                        .tier("bronze")
+                        .name("탐험가")
+                        .image("")
+                        .isAcquired(false)
+                        .build();
+                gradeRepository.save(grade);
+            }
+            if(gradeRepository.findById(2L).isEmpty()){
+                Grade grade = Grade.builder()
+                        .id(2L)
+                        .tier("silver")
+                        .name("보석 사냥꾼")
+                        .image("")
+                        .isAcquired(false)
+                        .build();
+                gradeRepository.save(grade);
+            }
+            if(gradeRepository.findById(3L).isEmpty()){
+                Grade grade = Grade.builder()
+                        .id(3L)
+                        .tier("gold")
+                        .name("전설 탐험가")
+                        .image("")
+                        .isAcquired(false)
+                        .build();
+                gradeRepository.save(grade);
+            }
+            if(gradeRepository.findById(4L).isEmpty()){
+                Grade grade = Grade.builder()
+                        .id(4L)
+                        .tier("diamond")
+                        .name("수호자")
+                        .image("")
+                        .isAcquired(false)
+                        .build();
+                gradeRepository.save(grade);
+            }
         }
 
         public void dbItemInit(){
@@ -65,7 +103,7 @@ public class DatabaseSeeding{
              *
              */
 
-            if (gradeRepository.findById(1L).isEmpty()) {
+            if (itemRepository.findById(1L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(1L)
                         .type(ItemStatus.APP)
@@ -78,7 +116,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(2L).isEmpty()) {
+            if (itemRepository.findById(2L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(2L)
                         .type(ItemStatus.Location)
@@ -91,7 +129,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(3L).isEmpty()) {
+            if (itemRepository.findById(3L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(3L)
                         .type(ItemStatus.APP)
@@ -104,7 +142,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(4L).isEmpty()) {
+            if (itemRepository.findById(4L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(4L)
                         .type(ItemStatus.Quiz)
@@ -123,7 +161,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(5L).isEmpty()) {
+            if (itemRepository.findById(5L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(5L)
                         .type(ItemStatus.Location)
@@ -136,7 +174,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(6L).isEmpty()) {
+            if (itemRepository.findById(6L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(6L)
                         .type(ItemStatus.Quiz)
@@ -155,7 +193,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(7L).isEmpty()) {
+            if (itemRepository.findById(7L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(7L)
                         .type(ItemStatus.Quiz)
@@ -173,7 +211,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(8L).isEmpty()) {
+            if (itemRepository.findById(8L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(8L)
                         .type(ItemStatus.Location)
@@ -186,7 +224,7 @@ public class DatabaseSeeding{
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
-            if (gradeRepository.findById(9L).isEmpty()) {
+            if (itemRepository.findById(9L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(9L)
                         .type(ItemStatus.Quiz)
