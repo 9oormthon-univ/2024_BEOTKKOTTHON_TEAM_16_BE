@@ -9,8 +9,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table
 @SuperBuilder(toBuilder = true)
@@ -20,18 +18,24 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Grade {
+    @Id // 고정된 테이블 - 수동 pk 입력
     private Long id;
 
-    @Column(length = 10)
-    private String name;
+    @Column(length = 15)
+    private String tier;    // (`Gold` Level UP)
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
+    @Column(length = 255)
+    private String image;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updatedAt;
+    @Column(length = 15)
+    private String name;    // 장터 수호자
+
+    private boolean isAcquired;
+
+
+    // 고정 메시지 - 별도 저장 X
+    // description (우와 벌써 뱃지를 `5`개나 획득..)
+    // confirm     (이어서 탐색하기)
 
 }

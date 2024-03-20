@@ -9,7 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 @Entity
 @Table
@@ -20,18 +20,33 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class Shop {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Market market;
+
+    @Column(length = 20)
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
+    private String image;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updatedAt;
+    private BigDecimal latitude;
+
+    private BigDecimal longitude;
+
+    @Column(length = 10)
+    private String region1Depth;
+
+    @Column(length = 10)
+    private String region2Depth;
+
+    @Column(length = 10)
+    private String region3Depth;
+
+    @Column(length = 20)
+    private String roadName;
 
 }
