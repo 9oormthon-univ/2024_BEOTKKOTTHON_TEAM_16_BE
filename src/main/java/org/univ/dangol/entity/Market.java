@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Market {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(length = 20)
@@ -26,10 +26,17 @@ public class Market {
 
     private String image;
 
+    @Column(length = 50)
+    private String description;
+
     private BigDecimal latitude;
 
     private BigDecimal longitude;
 
+    @Column(length = 20)
+    private String tag;
+
+    // address로 하나의 String으로 조작하여 넣어야 함
     @Column(length = 10)
     private String region1Depth;
 

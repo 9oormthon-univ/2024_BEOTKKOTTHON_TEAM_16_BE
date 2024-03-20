@@ -22,10 +22,10 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Shop {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Market market;
 
     @Column(length = 20)
