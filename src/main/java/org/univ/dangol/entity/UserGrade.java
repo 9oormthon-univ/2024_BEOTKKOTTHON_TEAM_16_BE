@@ -3,10 +3,7 @@ package org.univ.dangol.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -20,9 +17,11 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserGrade {
+    //user와 grade의 다대다 해소
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

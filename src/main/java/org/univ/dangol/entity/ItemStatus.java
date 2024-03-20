@@ -1,5 +1,5 @@
 package org.univ.dangol.entity;
 
-enum ItemStatus {
-    Quiz, Location, Reward;
+public enum ItemStatus {
+    Quiz, Location, Reward, APP;
 }

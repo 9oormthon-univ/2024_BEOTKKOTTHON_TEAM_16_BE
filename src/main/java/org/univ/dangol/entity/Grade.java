@@ -19,7 +19,7 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Grade {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // 고정된 테이블 - 수동 pk 입력
     private Long id;
 
     @Column(length = 15)
@@ -30,6 +30,9 @@ public class Grade {
 
     @Column(length = 15)
     private String name;    // 장터 수호자
+
+    private boolean isAcquired;
+
 
     // 고정 메시지 - 별도 저장 X
     // description (우와 벌써 뱃지를 `5`개나 획득..)

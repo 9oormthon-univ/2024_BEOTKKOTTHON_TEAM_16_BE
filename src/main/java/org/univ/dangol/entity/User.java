@@ -28,10 +28,8 @@ public class User {
     @Column(length = 10)
     private String name;
 
-    // 별도 grade 테이블 만들어야 함.
-    // 테스트를 위하여 임시로 String으로 저장함.
-    @Column(length = 20)
-    private String grade;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Grade grade;
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;

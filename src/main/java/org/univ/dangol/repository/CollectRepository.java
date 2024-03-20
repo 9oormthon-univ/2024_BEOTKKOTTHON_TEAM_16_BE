@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface CollectRepository extends JpaRepository<Collect, Long> {
     @NonNull Optional<Collect> findById(@NonNull Long id);
+    @NonNull Optional<Collect> findByUser(@NonNull User user);
 }

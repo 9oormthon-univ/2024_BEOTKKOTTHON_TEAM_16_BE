@@ -14,23 +14,31 @@ import java.math.BigDecimal;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder(toBuilder = true)
+@Jacksonized
 @Setter
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Item {
+public class Item {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // 고정된 테이블 - 수동 pk 입력
     private Long Id;
 
     @Enumerated(EnumType.STRING)
-    private ItemType type;
+    private ItemStatus type;
 
     @Column(length = 10)
     private String name;
 
+    @Column(length = 20)
+    private String emphasis;    // 용감한 탐험가
+
     @Column(length = 50)
-    private String description;
+    private String popupDescription;    // {emphasis}가 되신 것을 축하드립니다!
+
+    @Column(length = 50)
+    private String profileDescription;
 
     @Column(length = 255)
     private String image;
@@ -38,6 +46,30 @@ public abstract class Item {
     //location Item 삭제, 모든 Item 에는 위치가 있음
     private BigDecimal latitude;
     private BigDecimal longitude;
+
+    // 첫번째 퀴즈 팝업 페이지
+    @Column(length = 50)
+    private String quizWarningTitle;
+
+    @Column(length = 15)
+    private String quizWarningConfirmText;
+
+    @Column(length = 255)
+    private String quizWarningImage;
+
+
+//    고정 메세지 - 별도 저장 X
+//    @Column(length = 50)
+//    private String quizDescription; (아래 문제를 맞추어.. 해결해보세요!)
+
+    @Column(length = 50)
+    private String quizQuestion;
+
+    @Column(length = 10)
+    private String quizPositive;
+
+    @Column(length = 10)
+    private String quizNegative;
 
 
 //    // 고정 메시지 - 별도 저장 X
@@ -48,8 +80,4 @@ public abstract class Item {
 //    @Column(length = 10)
 //    private String category;
 
-}
-
-enum ItemType{
-    Quiz, Location, Reward;
 }
