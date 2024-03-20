@@ -11,6 +11,8 @@ import org.univ.dangol.entity.ItemStatus;
 import org.univ.dangol.repository.GradeRepository;
 import org.univ.dangol.repository.ItemRepository;
 
+import java.math.BigDecimal;
+
 @Component
 @RequiredArgsConstructor
 public class DatabaseSeeding{
@@ -40,7 +42,7 @@ public class DatabaseSeeding{
                         .tier("bronze")
                         .name("탐험가")
                         .image("")
-                        .isAcquired(false)
+                        .isAcquired(true)
                         .build();
                 gradeRepository.save(grade);
             }
@@ -151,11 +153,13 @@ public class DatabaseSeeding{
                         .popupDescription("\n녹두를 생쥐의 마수로부터 해방시켰어요!")
                         .profileDescription("왜 생쥐들은 녹두를 좋아할까..? 시장에는 더 맛있는게 많은데 말이야...")
                         .quizWarningTitle("녹두 하나 주면 안 잡아먹지!")
-                        .quizWarningConfirmText("녹두 되찾으러 가기")
+                        .quizConfirmText("녹두 되찾으러 가기")
                         .quizWarningImage("")
                         .quizQuestion("마천 시장은 전문 시장이다.")
                         .quizPositive("O")
                         .quizNegative("X")
+                        .latitude(BigDecimal.valueOf(37.497487590252675f))
+                        .longitude(BigDecimal.valueOf(127.15083584189415))
                         .image("")
                         .build();
                 // 위도 경도 추후 추가할 것
@@ -169,6 +173,8 @@ public class DatabaseSeeding{
                         .emphasis("배지 발견")
                         .popupDescription("을 축하드립니다!\n달다구리 꿀 배지를 획득하셨어요!")
                         .profileDescription("달다.. 그냥 매우 달다. 가래떡에 찍어먹으면 딱이겠는데!")
+                        .latitude(BigDecimal.valueOf(37.4978832))
+                        .longitude(BigDecimal.valueOf(127.151115))
                         .image("")
                         .build();
                 // 위도 경도 추후 추가할 것
@@ -185,10 +191,12 @@ public class DatabaseSeeding{
                         .profileDescription("육식성 호랑이가 노렸던 떡이다... 소화는 시킬 수 있었던 것일까?")
                         .quizWarningTitle("떡 하나 주면 안 잡아먹지!")
                         .quizWarningImage("")
-                        .quizWarningConfirmText("떡 구하러 가기")
+                        .quizConfirmText("떡 구하러 가기")
                         .quizQuestion("생방송 투데이에 나온\n30년 맛집의 이름은?")
                         .quizPositive("소문난 곱창")
                         .quizNegative("맛좋은 곱창")
+                        .latitude(BigDecimal.valueOf(37.49802380619021))
+                        .longitude(BigDecimal.valueOf(127.15030773074854))
                         .build();
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
@@ -203,10 +211,12 @@ public class DatabaseSeeding{
                         .popupDescription("\n곰으로부터 복슬복슬 복숭아를 지켜냈어요!")
                         .profileDescription("곰에게는 마늘과 쑥을! 나에게는 복슬복슬 복숭아를!")
                         .quizWarningTitle("과일 하나 주면 안 잡아먹지!")
-                        .quizWarningConfirmText("과일 구하러 가기")
+                        .quizConfirmText("과일 구하러 가기")
                         .quizQuestion("마천 시장은 조선시대 때\n말을 기르던 양마장이\n있는 데서 유래되었다.")
                         .quizPositive("O")
                         .quizNegative("X")
+                        .latitude(BigDecimal.valueOf(37.498921855945575))
+                        .longitude(BigDecimal.valueOf(127.15048044919968))
                         .build();
                 // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
@@ -219,6 +229,8 @@ public class DatabaseSeeding{
                         .emphasis("배지 발견")
                         .popupDescription("을 축하드립니다!\n바삭바삭 녹두전 배지를 획득하셨어요!")
                         .profileDescription("비오는 날 녹두전! 크으 못참지!")
+                        .latitude(BigDecimal.valueOf(37.4988331))
+                        .longitude(BigDecimal.valueOf(127.1513726))
                         .image("")
                         .build();
                 // 위도 경도 추후 추가할 것
@@ -232,6 +244,8 @@ public class DatabaseSeeding{
                         .emphasis("과일 바구니")
                         .popupDescription("획득을 축하드립니다!\n신선한 과일 바구니를 획득했어요!")
                         .profileDescription("산지배송 과일 바구니..! 신선함이 느껴진다아!")
+                        .latitude(BigDecimal.valueOf(37.4993124))
+                        .longitude(BigDecimal.valueOf(127.1521428))
                         .image("")
                         .build();
                 // 위도 경도 추후 추가할 것

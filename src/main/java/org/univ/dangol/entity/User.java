@@ -28,9 +28,6 @@ public class User {
     @Column(length = 10)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Grade grade;
-
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdAt;
 

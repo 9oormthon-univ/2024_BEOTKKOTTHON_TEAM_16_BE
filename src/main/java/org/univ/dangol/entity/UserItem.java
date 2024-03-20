@@ -1,6 +1,5 @@
 package org.univ.dangol.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,17 +20,17 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Collect {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Item item;
+public class UserItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Item item;
+
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime collectedAt;
+    private LocalDateTime acquireAt;
 }

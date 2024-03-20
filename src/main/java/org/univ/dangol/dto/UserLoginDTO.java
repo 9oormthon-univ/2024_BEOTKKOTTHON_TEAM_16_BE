@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 public class UserLoginDTO {
     private Long id;
     private String name;
+    private String grade;
     private LocalDateTime createAt;
-
 
     //    grade repo 작업 후 진행
     //    private String grade;

@@ -47,12 +47,12 @@ public class Item {
     private BigDecimal latitude;
     private BigDecimal longitude;
 
+    @Column(name = "quiz_warningconfirm_text")
+    private String quizConfirmText;
+
     // 첫번째 퀴즈 팝업 페이지
     @Column(length = 50)
     private String quizWarningTitle;
-
-    @Column(length = 15)
-    private String quizWarningConfirmText;
 
     @Column(length = 255)
     private String quizWarningImage;
