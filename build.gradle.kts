@@ -21,11 +21,6 @@ repositories {
 	mavenCentral()
 }
 
-//pathVariable의 패러미터 명을 그대로 사용하기 위함
-tasks.withType<JavaCompile> {
-	options.compilerArgs.add("-parameters")
-}
-
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")

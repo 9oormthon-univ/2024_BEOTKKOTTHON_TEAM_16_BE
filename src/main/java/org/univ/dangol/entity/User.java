@@ -1,37 +1,24 @@
 package org.univ.dangol.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
-import lombok.extern.jackson.Jacksonized;
-
-import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name="user")
 @SuperBuilder(toBuilder = true)
-@Jacksonized
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
+@ToString
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(length = 10)
-    private String name;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updatedAt;
-
+public class User extends BaseEntity{
+    @Column
+    private String nickName;
+    @Column
+    private int age;
 }
