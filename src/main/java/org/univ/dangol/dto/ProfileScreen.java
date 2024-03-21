@@ -15,6 +15,7 @@ public class ProfileScreen {
     private String nickname;
     private String gradeDescription;
     private String characterName;
+    private String previousImage;
     private String currentImage;
     private String nextImage;
     private List<BookRow> bookRows;
