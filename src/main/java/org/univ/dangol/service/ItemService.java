@@ -38,10 +38,6 @@ public class ItemService {
     }
 
     public Optional<Grade> getGrade(Long userId) {
-
-//        Optional<User> user = userRepository.findById(userId);
-//        Optional<UserGrade> userGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user.get());
-//        return Optional.of(userGrade.get().getGrade());
         return userRepository.findById(userId)
                 .flatMap(userGradeRepository::findByUserOrderByGradeIdDesc)
                 .map(UserGrade::getGrade);

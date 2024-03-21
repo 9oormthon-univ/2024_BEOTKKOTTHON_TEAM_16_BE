@@ -5,11 +5,14 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.univ.dangol.dto.RecommendMarket;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.ItemStatus;
+import org.univ.dangol.entity.Market;
 import org.univ.dangol.repository.GradeRepository;
 import org.univ.dangol.repository.ItemRepository;
+import org.univ.dangol.repository.MarketRepository;
 
 import java.math.BigDecimal;
 
@@ -24,6 +27,7 @@ public class DatabaseSeeding{
         // 개발자에 의해 진행되어야 하는 데이터베이스 시딩, Bean 생성 단계에서 수행
         dbSeedingService.dbGradeInit();
         dbSeedingService.dbItemInit();
+        dbSeedingService.dbMarketInit();
     }
 
 
@@ -34,6 +38,7 @@ public class DatabaseSeeding{
 
         private final GradeRepository gradeRepository;
         private final ItemRepository itemRepository;
+        private final MarketRepository marketRepository;
 
         public void dbGradeInit(){
             if(gradeRepository.findById(1L).isEmpty()){
@@ -87,7 +92,7 @@ public class DatabaseSeeding{
              *  emphasis - 팝업에서 강조하는 문자열
              *  PopupDescription - 이벤트 팝업에서 사용되는 설명문
              *  profileDescription - 프로필 팝업에서 사용되는 설명문
-             *  longitude - 경도
+             *  longitude - 경도"
              *  latitude - 위도
              *  image - 아이템 이름
              *
@@ -253,5 +258,54 @@ public class DatabaseSeeding{
             }
         }
 
+        public void dbMarketInit(){
+
+            if (marketRepository.findById(1L).isEmpty()) {
+                Market market = Market.builder()
+                        .id(1L)
+                        .name("의정부 제일 시장")
+                        .description("'다 있는 의정부 제일 시장'을 추천드립니다.\n함께 의정부 제일 시장을 탐색하시겠습니까?")
+                        .image("http://uihope.or.kr/cmm/fms/getImage.do?atchFileId=FILE_000000000000274")
+                        .latitude(BigDecimal.valueOf(37.739754477807224))
+                        .longitude(BigDecimal.valueOf(127.05039598248882))
+                        .region1Depth("경기도")
+                        .region2Depth("의정부시")
+                        .region3Depth("")
+                        .roadName("시민로121번길 43-2")
+                        .build();
+                marketRepository.save(market);
+            }
+            if (marketRepository.findById(2L).isEmpty()) {
+                Market market = Market.builder()
+                        .id(2L)
+                        .name("마천 시장")
+                        .description("'맛집으로 넘치는 마천 시장'을 추천드립니다.\\n함께 마천 시장을 탐색하시겠습니까?")
+                        .image("http://modo.phinf.naver.net/20160324_75/1458803635350ff1q6_JPEG/mosaSEAY4j.jpeg?type=f530_353")
+                        .latitude(BigDecimal.valueOf(37.49815517860691))
+                        .longitude(BigDecimal.valueOf(127.1504139325548))
+                        .region1Depth("서울특별시")
+                        .region2Depth("송파구")
+                        .region3Depth("")
+                        .roadName("마천로45길 23")
+                        .build();
+                marketRepository.save(market);
+            }
+            if (marketRepository.findById(3L).isEmpty()) {
+                Market market = Market.builder()
+                        .id(2L)
+                        .name("가락 농수산물 도매시장")
+                        .description("'싱싱한 수산물 가득 가락 시장'을 추천드립니다.\\n함께 가락 시장을 탐색하시겠습니까?")
+                        .image("https://minio.nculture.org/amsweb-opt/multimedia_assets/116/28893/8809/c/28893-full-size.jpg")
+                        .latitude(BigDecimal.valueOf(37.49815517860691))
+                        .longitude(BigDecimal.valueOf(127.1109403328604))
+                        .region1Depth("서울특별시")
+                        .region2Depth("송파구")
+                        .region3Depth("")
+                        .roadName("양재대로 932")
+                        .build();
+                marketRepository.save(market);
+            }
+
+        }
     }
 }

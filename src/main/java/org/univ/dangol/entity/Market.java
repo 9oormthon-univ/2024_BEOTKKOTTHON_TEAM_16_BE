@@ -33,8 +33,9 @@ public class Market {
 
     private BigDecimal longitude;
 
-    @Column(length = 20)
-    private String tag;
+    // 태그는 기획단계에서 삭제
+//    @Column(length = 20)
+//    private String tag;
 
     // address로 하나의 String으로 조작하여 넣어야 함
     @Column(length = 10)
