@@ -2,6 +2,7 @@ package org.univ.dangol.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,10 @@ import java.util.List;
 @RestController
 public class TempProfileScreenController {
     @GetMapping("users/{userId}/profile")
-    public ResponseEntity<ProfileScreen> profileScreen(@PathVariable("userId")int userId){
+    public ResponseEntity<?> profileScreen(@PathVariable("userId")int userId){
         // TO DO CHANGE REGION
-        List<BookRow> bookRows = new ArrayList<>();
+        List<BookRow> bookRows1 = new ArrayList<>();
+        List<BookRow> bookRows2 = new ArrayList<>();
         Badge badge1 = Badge.builder()
                 .id(1L).name("탐험가").acquisitionMethod(ItemStatus.APP).acquiredAt(LocalDateTime.now()).description("첫 번째 퀘스트 보상 탐험가 배지")
                 .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Hat.png")
@@ -61,20 +63,45 @@ public class TempProfileScreenController {
         Reward reward1 = Reward.builder().id(1).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
         Reward reward2 = Reward.builder().id(2).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
         Reward reward3 = Reward.builder().id(3).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
+
         List<Badge> badges1 = new ArrayList<>(); badges1.add(badge1); badges1.add(badge2); badges1.add(badge3);
         List<Badge> badges2 = new ArrayList<>(); badges2.add(badge4); badges2.add(badge5); badges2.add(badge6);
         List<Badge> badges3 = new ArrayList<>(); badges3.add(badge7); badges3.add(badge8); badges3.add(badge9);
-        bookRows.add(BookRow.builder().badges(badges1).reward(reward1).build());
-        bookRows.add(BookRow.builder().badges(badges2).reward(reward2).build());
-        bookRows.add(BookRow.builder().badges(badges3).reward(reward3).build());
-        ProfileScreen dto = ProfileScreen.builder()
-                .nickname("guest")
-                .gradeDescription("조금만 더 시장을 탐험하면,\n장터 보물사냥꾼이 될 수 있어요!")
-                .characterName("장터 탐험가")
-                .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/bronzeGrade.png")
-                .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverGradeShadow.png")
-                .bookRows(bookRows)
-                .build();
+
+        bookRows1.add(BookRow.builder().badges(badges1).reward(reward1).build());
+        bookRows1.add(BookRow.builder().badges(badges2).reward(reward2).build());
+        bookRows1.add(BookRow.builder().badges(badges3).reward(reward3).build());
+
+        Reward reward0 = Reward.builder().id(1).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png").build();
+        bookRows2.add(BookRow.builder().badges(badges1).reward(reward0).build());
+        bookRows2.add(BookRow.builder().badges(badges2).reward(reward2).build());
+        bookRows2.add(BookRow.builder().badges(badges3).reward(reward3).build());
+
+        ProfileScreen dto = new ProfileScreen();
+        switch (userId) {
+            case 1 -> dto = ProfileScreen.builder()
+                    .nickname("guest")
+                    .gradeDescription("조금만 더 시장을 탐험하면,\n장터 보물 사냥꾼이 될 수 있어요!")
+                    .characterName("장터 탐험가")
+                    .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/bronzeGrade.png")
+                    .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverGradeShadow.png")
+                    .bookRows(bookRows1)
+                    .build();
+            case 2 -> dto = ProfileScreen.builder()
+                    .nickname("guest")
+                    .gradeDescription("조금만 더 시장을 탐험하면,\n장터 전설이 될 수 있어요!")
+                    .characterName("장터 보물 사냥꾼")
+                    .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/siverGrade.png")
+                    .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGradeShadow.png")
+                    .bookRows(bookRows2)
+                    .build();
+            default -> {
+                return ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body("잘못된 요청입니다. 유효한 badgeId를 전송해주세요. 시연 단계에서는 2,3만 존재합니다.");
+            }
+        }
+
         // END REGION
 
         HttpHeaders headers = new HttpHeaders();
