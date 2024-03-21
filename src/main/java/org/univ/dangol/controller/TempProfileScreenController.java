@@ -68,6 +68,11 @@ public class TempProfileScreenController {
         bookRows.add(BookRow.builder().badges(badges2).reward(reward2).build());
         bookRows.add(BookRow.builder().badges(badges3).reward(reward3).build());
         ProfileScreen dto = ProfileScreen.builder()
+                .nickname("guest")
+                .gradeDescription("조금만 더 시장을 탐험하면,\n장터 보물사냥꾼이 될 수 있어요!")
+                .characterName("장터 탐험가")
+                .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/siverGrade.png")
+                .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGradeShadow.png")
                 .bookRows(bookRows)
                 .build();
         // END REGION
