@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ShopDTO {
-    private Integer id;
+    private long id;
     private String name;
     private String address;
     private String imgUrl;

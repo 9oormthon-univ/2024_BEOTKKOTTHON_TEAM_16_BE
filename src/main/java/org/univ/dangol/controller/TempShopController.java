@@ -21,6 +21,18 @@ public class TempShopController {
     public ResponseEntity<ShopScreen> shopScreen(){
         // TO DO CHANGE REGION
         List<ShopDTO> shopDTOList = new ArrayList<>();
+        List<String> taglist = new ArrayList<>(); taglist.add("떡볶이"); taglist.add("어묵"); taglist.add("순대");
+        ShopDTO shopDTO = ShopDTO.builder()
+                .id(1)
+                .name("마천골")
+                .address("서울 송파구 마천로45길 44")
+                .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/machungol.png")
+                .category("분식집")
+                .tags(taglist)
+                .latitude(37.49934116173424000000)
+                .longitude(127.15214585905004000000)
+                .build();
+        shopDTOList.add(shopDTO);
         BadgePosition badgePosition = BadgePosition.builder().build();
         ShopScreen dto = ShopScreen.builder()
                  .shops(shopDTOList)
