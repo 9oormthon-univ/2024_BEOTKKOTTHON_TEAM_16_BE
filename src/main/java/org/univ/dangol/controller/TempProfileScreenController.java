@@ -50,7 +50,7 @@ public class TempProfileScreenController {
                 .build();
         Badge badge7 = Badge.builder()
                 .id(7L).name("복슬복슬 복숭아").acquisitionMethod(ItemStatus.Quiz).acquiredAt(null).description("일곱 번째 퀘스트 보상 복슬복슬 복숭아 배지")
-                .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/PeachShadow.pngg")
+                .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/PeachShadow.png")
                 .build();
         Badge badge8 = Badge.builder()
                 .id(8L).name("바삭바삭 녹두전").acquisitionMethod(ItemStatus.Location).acquiredAt(null).description("여덟 번째 퀘스트 보상 바삭바삭 녹두전 배지")
