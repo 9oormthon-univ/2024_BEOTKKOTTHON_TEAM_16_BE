@@ -31,7 +31,11 @@ public class Shop {
     @Column(length = 20)
     private String name;
 
+    @Column(length = 20)
+    private String category;
 
+    @Column(length = 80)
+    private String tag;
 
     @Lob
     @Column(columnDefinition = "LONGTEXT")
