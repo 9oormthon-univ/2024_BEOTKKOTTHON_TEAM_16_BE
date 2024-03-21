@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Market {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private long id;
 
     @Column(length = 20)
@@ -30,7 +30,6 @@ public class Market {
     private String description;
 
     private BigDecimal latitude;
-
     private BigDecimal longitude;
 
     // 태그는 기획단계에서 삭제
