@@ -29,11 +29,12 @@ public class TempLevelUpPopupController {
         RewardPopup rewardPopup = RewardPopup.builder()
                 .title("축하드립니다🥳")
                 .description("꺄 트로피네요!\n퀘스트 달성 완료를 축하드립니다.\n상인회로 이동해서 상품을 받아보세요✨")
-                .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png")
+                .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
                 .positive("시장상인회 이동하기")
                 .negative("다음에 받기")
                 .latitude(37.49839045691535)
                 .longitude(127.15138129910228)
+                .id(1)
                 .build();
         LevelUpPopup dto = LevelUpPopup.builder()
                 .levelUpIntroducePopup(levelUpIntroducePopup)

@@ -15,4 +15,5 @@ public class RewardPopup {
     private String negative;
     private double latitude;
     private double longitude;
+    private long id;
 }
