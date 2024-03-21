@@ -71,8 +71,8 @@ public class TempProfileScreenController {
                 .nickname("guest")
                 .gradeDescription("조금만 더 시장을 탐험하면,\n장터 보물사냥꾼이 될 수 있어요!")
                 .characterName("장터 탐험가")
-                .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/siverGrade.png")
-                .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGradeShadow.png")
+                .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/bronzeGrade.png")
+                .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverGradeShadow.png")
                 .bookRows(bookRows)
                 .build();
         // END REGION
