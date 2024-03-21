@@ -85,7 +85,7 @@ public class TempProfileScreenController {
                     .characterName("장터 탐험가")
                     .previousImage(null)
                     .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/bronzeGrade.png")
-                    .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverGradeShadow.png")
+                    .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverGradeShadow-big-removebg-preview.png")
                     .bookRows(bookRows1)
                     .build();
             case 2 -> dto = ProfileScreen.builder()
@@ -94,7 +94,7 @@ public class TempProfileScreenController {
                     .characterName("장터 보물 사냥꾼")
                     .previousImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/bronzeGrade.png")
                     .currentImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/siverGrade.png")
-                    .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGradeShadow.png")
+                    .nextImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGradeShadow-big-removebg-preview.png")
                     .bookRows(bookRows2)
                     .build();
             default -> {
