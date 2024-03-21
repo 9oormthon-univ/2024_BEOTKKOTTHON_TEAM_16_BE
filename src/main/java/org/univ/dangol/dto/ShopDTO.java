@@ -18,4 +18,5 @@ public class ShopDTO {
     private List<String> tags;
     private Double latitude;
     private Double longitude;
+    private boolean isBookmarked;
 }
