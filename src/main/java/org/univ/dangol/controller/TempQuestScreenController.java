@@ -31,14 +31,14 @@ public class TempQuestScreenController {
                 .id(2)
                 .name("탐색의 시작")
                 .isAcquired(false)
-                .description("이제는 %B%직접%B% 시장을\n %B%탐험%B%해볼 시간이에요!")
+                .description("이제는 직접 시장을\n 탐험해볼 시간이에요!")
                 .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/FlashlightShadow.pngg")
                 .build();
         Quest quest3 = Quest.builder()
                 .id(3)
                 .name("단골 손님")
                 .isAcquired(false)
-                .description("좋아하는 상점을\n %B%단골%B%로 등록해보세요!")
+                .description("좋아하는 상점을\n 단골로 등록해보세요!")
                 .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/BagShadow.png")
                 .build();
         quests.add(quest1); quests.add(quest2); quests.add(quest3);

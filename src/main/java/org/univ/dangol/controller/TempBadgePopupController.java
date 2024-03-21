@@ -22,7 +22,7 @@ public class TempBadgePopupController {
         switch (badgeId) {
             case 2 -> dto = BadgePopup.builder()
                     .title("탐색의 시작 배지 획득🔥")
-                    .description("시장의 %G%첫 탐색의 시작%G%을 축하드립니다!\n탐색의 시작 배지를 획득하셨어요.")
+                    .description("시장의 첫 탐색의 시작을 축하드립니다!\n탐색의 시작 배지를 획득하셨어요.")
                     .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Flashlight.png")
                     .positive("이어서 탐험하기")
                     .negative("도감 이동하기")
@@ -30,7 +30,7 @@ public class TempBadgePopupController {
                     .build();
             case 3 -> dto = BadgePopup.builder()
                     .title("단골 배지 획득🔥")
-                    .description("%G%단골손님%G%이 되신 것을 축하드립니다!\n단골손님 배지를 획득하셨어요.")
+                    .description("단골손님이 되신 것을 축하드립니다!\n단골손님 배지를 획득하셨어요.")
                     .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Bag.png")
                     .positive("이어서 탐험하기")
                     .negative("도감 이동하기")
