@@ -24,7 +24,7 @@ public class TempQuestScreenController {
                 .id(1)
                 .name("탐험가")
                 .isAcquired(true)
-                .description("탐험을 떠나 볼까요?(디자인 x)")
+                .description("탐험가 배지 획득 완료!✨")
                 .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Hat.png")
                 .build();
         Quest quest2 = Quest.builder()

@@ -22,7 +22,7 @@ public class TempShopController {
         // TO DO CHANGE REGION
         List<ShopDTO> shopDTOList = new ArrayList<>();
         BadgePosition badgePosition = BadgePosition.builder().build();
-         ShopScreen dto = ShopScreen.builder()
+        ShopScreen dto = ShopScreen.builder()
                  .shops(shopDTOList)
                  .badgePosition(badgePosition)
                  .build();
