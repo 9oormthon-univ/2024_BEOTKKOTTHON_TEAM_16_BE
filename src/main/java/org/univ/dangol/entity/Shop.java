@@ -38,7 +38,7 @@ public class Shop {
     private String tag;
 
     @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String image;
 
     @Column(precision = 23, scale = 20)
