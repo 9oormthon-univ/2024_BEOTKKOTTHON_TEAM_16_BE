@@ -19,7 +19,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @AllArgsConstructor
-public class TempShopController {
+public class ShopController {
     private final ShopService shopService;
     private final ItemService itemService;
     @GetMapping("users/{userId}/shopScreen")
