@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Quest {
-    private int id;
+    private Long id;
     private String name;
     private Boolean isAcquired;
     private String description;

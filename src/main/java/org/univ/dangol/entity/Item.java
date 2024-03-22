@@ -34,11 +34,8 @@ public class Item {
     @Column(length = 10)
     private String name;
 
-    @Column(length = 20)
-    private String emphasis;    // 용감한 탐험가
-
     @Column(length = 50)
-    private String popupDescription;    // {emphasis}가 되신 것을 축하드립니다!
+    private String popupDescription;
 
     @Column(length = 50)
     private String profileDescription;
@@ -55,10 +52,13 @@ public class Item {
     private String unactivatedImage;
 
     //location Item 삭제, 모든 Item 에는 위치가 있음
+    @Column(precision = 20, scale = 16)
     private BigDecimal latitude;
+
+    @Column(precision = 20, scale = 16)
     private BigDecimal longitude;
 
-    @Column(name = "quiz_warningconfirm_text")
+    @Column
     private String quizConfirmText;
 
     // 첫번째 퀴즈 팝업 페이지

@@ -6,11 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.univ.dangol.dto.*;
+import org.univ.dangol.dto.LevelUpIntroducePopup;
+import org.univ.dangol.dto.LevelUpPopup;
+import org.univ.dangol.dto.RewardPopup;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @RestController

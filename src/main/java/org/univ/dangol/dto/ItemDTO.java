@@ -1,4 +1,4 @@
-package org.univ.dangol.test_dto;
+package org.univ.dangol.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,11 +12,16 @@ import java.math.BigDecimal;
 @Jacksonized
 @Getter
 @Setter
-public class TEST_ItemDTO {
+public class ItemDTO {
     private Long Id;
     private ItemStatus type;
+
+    // 다음 뱃지 획득을 위함
+    private Long nextId;
+    private BigDecimal nextLatitude;
+    private BigDecimal nextLongitude;
+
     private String name;
-    private String emphasis;    // 용감한 탐험가
     private String popupDescription;    // {emphasis}가 되신 것을 축하드립니다!
     private String profileDescription;
     private String image;

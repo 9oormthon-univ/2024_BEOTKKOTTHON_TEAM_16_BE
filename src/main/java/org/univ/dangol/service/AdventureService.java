@@ -10,6 +10,10 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 사용자 모험에 대한 서비스이다.
+ */
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -30,7 +34,6 @@ public class AdventureService {
     /**
      * touchTrigger
      * 사용자가 특정 물체와 접촉했을 경우, 다음 이벤트를 사용자에게 반환하는 서비스입니다.
-     * @param id
      */
     @Transactional
     public Item touchTrigger(Long id){

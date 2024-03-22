@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.service.AdventureService;
+import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
-import org.univ.dangol.test_dto.TEST_ItemDTO;
+import org.univ.dangol.dto.ItemDTO;
 
 @Slf4j
 @RestController
@@ -18,23 +18,29 @@ public class AdventureController {
 
     private final UserService userService;
     private final AdventureService adventureService;
+    private final ItemService itemService;
 
     /**
      * touchTriggerController
      * 마커와의 터치 발생 시, 발생하는 컨트롤러
      */
-    @PostMapping("users/{user_id}/touch")
-    public TEST_ItemDTO touchTriggerController(@PathVariable("user_id") Long id){
+
+    @PostMapping("users/{userId}/touch")
+    public ItemDTO touchTriggerController(@PathVariable("userId") Long id){
         // (추가해야 할 기능) 3개마다 reward 제공
         // (9개 넘을 시 에러 메세지 제공)
 
         Item item = adventureService.touchTrigger(id);
+        Item nextItem = itemService.findByItemIdNextItem(item);
 
-        return TEST_ItemDTO.builder()
+
+        return ItemDTO.builder()
                 .Id(item.getId())
                 .type(item.getType())
                 .name(item.getName())
-                .emphasis(item.getEmphasis())
+                .nextId(nextItem.getId())
+                .nextLatitude(nextItem.getLatitude())
+                .nextLongitude(nextItem.getLongitude())
                 .popupDescription(item.getPopupDescription())
                 .profileDescription(item.getProfileDescription())
                 .image(item.getImage())
@@ -54,10 +60,12 @@ public class AdventureController {
             @PathVariable("answer") String answer){
         if(adventureService.quizValidation(answer, id))
         {
-            return "OK";
+            return "isCorrect = true";
         }
         else {
-            return "Failed";
+            return "isCorrect = false";
         }
     }
+
+
 }

@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.univ.dangol.dto.BookMarkDTO;
 import org.univ.dangol.entity.BookMark;
-import org.univ.dangol.repository.BookMarkRepository;
 import org.univ.dangol.service.BookMarkService;
-
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -41,12 +38,12 @@ public class BookMarkController {
         if(returnBookMark.getSecond().equals("created")){
             return BookMarkDTO.builder()
                     .bookmark(returnBookMark.getFirst())
-                    .status("created")
+                    .status("isBookmark = true")
                     .build();
         }else{ //deleted
             return BookMarkDTO.builder()
                     .bookmark(returnBookMark.getFirst())
-                    .status("deleted")
+                    .status("isBookmark = false")
                     .build();
         }
     }
