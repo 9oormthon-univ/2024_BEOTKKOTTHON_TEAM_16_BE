@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Shop {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,22 +31,22 @@ public class Shop {
     @Column(length = 20)
     private String name;
 
+    @Column(length = 20)
+    private String category;
+
+    @Column(length = 80)
+    private String tag;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String image;
 
+    @Column(precision = 23, scale = 20)
     private BigDecimal latitude;
 
+    @Column(precision = 23, scale = 20)
     private BigDecimal longitude;
 
-    @Column(length = 10)
-    private String region1Depth;
-
-    @Column(length = 10)
-    private String region2Depth;
-
-    @Column(length = 10)
-    private String region3Depth;
-
-    @Column(length = 20)
-    private String roadName;
-
+    @Column(length = 80)
+    private String address;
 }

@@ -24,8 +24,15 @@ public class ItemService {
     private final UserRepository userRepository;
     private final GradeRepository gradeRepository;
     private final UserGradeRepository userGradeRepository;
-
-
+    // 사용자가 다음에 얻어야 할 아이템 정보를 가져오는 함수 단순히 데이터 리딩 작업이라 판단되어  @Transactional(readOnly = true) 붙임
+    // 모든 아이템 id는 각 아이템의 순서임을 가정하고 작업 ex: 첫 번째 아이템 모험의 시작 -> id 1
+    @Transactional(readOnly = true)
+    public Optional<Item> getNextItem(Long userId){
+        long nextItemId =  userRepository.findById(userId)
+                    .map(user -> userItemRepository.findByUser(user).size())
+                    .orElse(0)+1 ; // 사용자가 없을 경우 0 반환
+        return itemRepository.findById(nextItemId);
+    }
     public List<Item> getItemList(Long userId) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) return Collections.emptyList();
@@ -38,10 +45,6 @@ public class ItemService {
     }
 
     public Optional<Grade> getGrade(Long userId) {
-
-//        Optional<User> user = userRepository.findById(userId);
-//        Optional<UserGrade> userGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user.get());
-//        return Optional.of(userGrade.get().getGrade());
         return userRepository.findById(userId)
                 .flatMap(userGradeRepository::findByUserOrderByGradeIdDesc)
                 .map(UserGrade::getGrade);
@@ -55,7 +58,7 @@ public class ItemService {
         Long currentLevel = grade.getId();
 
         List<Grade> gradeList = new ArrayList<>();
-        Grade dummyGrade = Grade.builder().image("?").build();
+        Grade dummyGrade = Grade.builder().characterImage("?").build();
 
         if(currentLevel == 1){
             // 1단계 일 경우, 이전 사진을 ?로 제공해야 한다.

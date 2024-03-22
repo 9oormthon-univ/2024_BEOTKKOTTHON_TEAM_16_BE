@@ -30,10 +30,6 @@ public class UserProflieDTO {
 
     private List<Trophy> rewards;
 
-
-
-
-
 }
 
 

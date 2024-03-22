@@ -18,6 +18,7 @@ import org.univ.dangol.entity.UserItem;
 import org.univ.dangol.repository.UserItemRepository;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
+import org.univ.dangol.test_dto.TEST_QuestScreenDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,54 +45,60 @@ public class UserController {
                 .id(user.getId())
                 .name(user.getName())
                 .createAt(user.getCreatedAt())
-                .grade(grade.getTier())
+                .grade(grade.getId())
                 .build();
     }
 
-    @PostMapping("/users/{user_id}/profile")
-    public UserProflieDTO profile(@PathVariable("user_id") Long id) {
 
-        Optional<User> user = userService.getUserById(id);
-        Optional<Grade> grade = itemService.getGrade(id);
-        List<Item> itemList = itemService.getItemList(id);
-        List<Grade> gradeList = itemService.getGradeList(user);
-
-        //DTO 제작
-        //등급 문자열 조작
-        String inputDescription;
-        if(gradeList.size() == 9)
-        {
-            inputDescription = "축하해요! 모든 시장 배지를 수집하셨어요!";
-        }
-        else{
-            int remainBadgeNum = 3 - (gradeList.size() % 3);
-            inputDescription = "화이팅! " + remainBadgeNum + "개만 더 모으면 " + grade.get().getName() + "이 될 수 있어요!";
-        }
-
-        //Badge 리스트 제작
-        List<Badge> badgeList = new ArrayList<>();
-
-        for(Item item : itemList) {
-            //acquireAt은 추후 아이템 획득 처리 기능 이후 작성한다.
-
-            Badge badge = Badge.builder()
-                    .id(item.getId())
-                    .name(item.getName())
-                    .acquisitionMethod(item.getType())
-                    .description(item.getProfileDescription())
-                    .imgUrl(item.getImage())
-                    .build();
-            badgeList.add(badge);
-        }
-
-        return UserProflieDTO.builder()
-                .nickname(user.get().getName())
-                .gradeDescription(inputDescription)
-                .characterName(grade.get().getName())
-                .previousImage(gradeList.get(0).getImage())
-                .currentImage(gradeList.get(1).getImage())
-                .nextImage(gradeList.get(2).getImage())
-                .badges(badgeList)
-                .build();
+    @PostMapping("users/{user_id}/questList")
+    public TEST_QuestScreenDTO getQuestListController(@PathVariable("user_id") Long id){
+        return userService.showQuestList(id);
     }
+
+//    @PostMapping("/users/{user_id}/profile")
+//    public UserProflieDTO profile(@PathVariable("user_id") Long id) {
+//
+//        Optional<User> user = userService.getUserById(id);
+//        Optional<Grade> grade = itemService.getGrade(id);
+//        List<Item> itemList = itemService.getItemList(id);
+//        List<Grade> gradeList = itemService.getGradeList(user);
+//
+//        //DTO 제작
+//        //등급 문자열 조작
+//        String inputDescription;
+//        if(gradeList.size() == 9)
+//        {
+//            inputDescription = "축하해요! 모든 시장 배지를 수집하셨어요!";
+//        }
+//        else{
+//            int remainBadgeNum = 3 - (gradeList.size() % 3);
+//            inputDescription = "화이팅! " + remainBadgeNum + "개만 더 모으면 " + grade.get().getName() + "이 될 수 있어요!";
+//        }
+//
+//        //Badge 리스트 제작
+//        List<Badge> badgeList = new ArrayList<>();
+//
+//        for(Item item : itemList) {
+//            //acquireAt은 추후 아이템 획득 처리 기능 이후 작성한다.
+//
+//            Badge badge = Badge.builder()
+//                    .id(item.getId())
+//                    .name(item.getName())
+//                    .acquisitionMethod(item.getType())
+//                    .description(item.getProfileDescription())
+//                    .imgUrl(item.getImage())
+//                    .build();
+//            badgeList.add(badge);
+//        }
+//
+//        return UserProflieDTO.builder()
+//                .nickname(user.get().getName())
+//                .gradeDescription(inputDescription)
+//                .characterName(grade.get().getName())
+//                .previousImage(gradeList.get(0).getImage())
+//                .currentImage(gradeList.get(1).getImage())
+//                .nextImage(gradeList.get(2).getImage())
+//                .badges(badgeList)
+//                .build();
+//    }
 }

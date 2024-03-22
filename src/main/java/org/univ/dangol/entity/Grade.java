@@ -25,13 +25,30 @@ public class Grade {
     @Column(length = 15)
     private String tier;    // (`Gold` Level UP)
 
-    @Column(length = 255)
-    private String image;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String characterImage;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String characterEmptyImage;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String trophyImage;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String trophyEmptyImage;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String trophyRibbonImage;
 
     @Column(length = 15)
     private String name;    // 장터 수호자
 
-    private boolean isAcquired;
+    private boolean isUsed;
 
 
     // 고정 메시지 - 별도 저장 X

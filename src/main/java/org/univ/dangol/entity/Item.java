@@ -9,6 +9,8 @@ import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table
@@ -21,6 +23,7 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Item {
+
 
     @Id // 고정된 테이블 - 수동 pk 입력
     private Long Id;
@@ -40,8 +43,16 @@ public class Item {
     @Column(length = 50)
     private String profileDescription;
 
-    @Column(length = 255)
+    @Column(length = 50)
+    private String questDescription;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String image;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String unactivatedImage;
 
     //location Item 삭제, 모든 Item 에는 위치가 있음
     private BigDecimal latitude;
