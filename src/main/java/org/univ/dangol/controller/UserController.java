@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,7 +51,7 @@ public class UserController {
     }
 
 
-    @PostMapping("users/{user_id}/questList")
+    @GetMapping("users/{user_id}/questList")
     public TEST_QuestScreenDTO getQuestListController(@PathVariable("user_id") Long id){
         return userService.showQuestList(id);
     }
