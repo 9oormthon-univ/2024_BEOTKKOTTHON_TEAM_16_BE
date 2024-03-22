@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface UserGradeRepository extends JpaRepository<UserGrade, Long> {
 
     Optional<UserGrade> findByUserOrderByGradeIdDesc(User user);
-    Optional<UserGrade> findByUser(User user);
+    List<UserGrade> findByUser(User user);
 }

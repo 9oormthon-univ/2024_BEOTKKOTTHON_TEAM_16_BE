@@ -1,6 +1,7 @@
 package org.univ.dangol.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +16,10 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class BookMarkController {
 
-    BookMarkService bookMarkService;
+    private final BookMarkService bookMarkService;
 
     /**
      * setBookmark
@@ -48,5 +50,4 @@ public class BookMarkController {
                     .build();
         }
     }
-
 }

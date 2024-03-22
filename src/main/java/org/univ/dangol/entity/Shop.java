@@ -41,10 +41,10 @@ public class Shop {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-    @Column(precision = 23, scale = 20)
+    @Column(precision = 20, scale = 16)
     private BigDecimal latitude;
 
-    @Column(precision = 23, scale = 20)
+    @Column(precision = 20, scale = 16)
     private BigDecimal longitude;
 
     @Column(length = 80)

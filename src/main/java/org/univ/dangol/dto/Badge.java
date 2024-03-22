@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Badge {
+    //Badge에 획득 여부를 보내야 할까
+    //
     private Long id;
     private String name;
     private ItemStatus acquisitionMethod;

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.univ.dangol.entity.*;
 import org.univ.dangol.repository.*;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,6 +80,7 @@ public class AdventureService {
         UserItem newUserItem = UserItem.builder()
                 .user(user)
                 .item(item)
+                .acquireAt(LocalDateTime.now())
                 .build();
         userItemRepository.save(newUserItem);
         levelUpValidation(user);
@@ -125,6 +127,7 @@ public class AdventureService {
             UserItem userItem = UserItem.builder()
                     .user(user)
                     .item(item)
+                    .acquireAt(LocalDateTime.now())
                     .build();
             userItemRepository.save(userItem);
             levelUpValidation(user);
@@ -143,7 +146,7 @@ public class AdventureService {
 
         if(userItemSize % 3 == 0){
             // 뱃지가 3개 6개 9개 일 경우
-            List<UserGrade> userGradeList = userGradeRepository.findAll();
+            List<UserGrade> userGradeList = userGradeRepository.findByUser(user);
             Grade grade = gradeRepository.findById(Long.valueOf(userGradeList.size() + 1)).get();
 
             UserGrade userGrade = UserGrade.builder()
