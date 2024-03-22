@@ -11,7 +11,6 @@ import org.univ.dangol.dto.ProfileScreen;
 import org.univ.dangol.dto.Reward;
 import org.univ.dangol.entity.*;
 import org.univ.dangol.repository.*;
-import org.univ.dangol.test_dto.TEST_ProfileScreen;
 import org.univ.dangol.test_dto.TEST_QuestDTO;
 import org.univ.dangol.test_dto.TEST_QuestScreenDTO;
 
@@ -155,12 +154,12 @@ public class UserService {
      * 사용자의 아이템을 모두 보여주는 서비스이다.
      */
     @Transactional
-    public void showProfile(Long user_id) {
+    public ProfileScreen showProfile(Long user_id) {
         User user = userRepository.findById(user_id).get();
         List<UserItem> userItemList = userItemRepository.findByUser(user);
 
         // 상단 캐릭터 표시를 위한 기능
-        List<Grade> userProfileGradeList = getGradeList(user);
+        List<String> userProfileImageList = getGradeImageList(user);
         List<Badge> userBadgeList = new ArrayList<Badge>();
         // 뱃지 표시를 위한 기능
 
@@ -179,7 +178,7 @@ public class UserService {
         }
         for (int i = 0; i < 9 - userItemList.size(); i++) {
             // 더미 데이터 생성
-            Item item = itemRepository.findById((long) i).get();
+            Item item = itemRepository.findById((long) (userItemList.size() + i)).get();
 
             userBadgeList.add(Badge.builder()
                     .id(item.getId())
@@ -264,6 +263,27 @@ public class UserService {
                 .build());
 
         // ProfileScreen 생성
+        UserGrade userTopGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).get();
+        Grade topGrade = userTopGrade.getGrade();
+        Grade nextGrade = gradeRepository.findById(topGrade.getId() + 1).get();
+
+        String inputDescription;
+        if(userGradeList.size() == 4){
+            inputDescription = "축하합니다\n당신이 이 구역의 최고에요!";
+        }else{
+            inputDescription = "조금만 더 시장을 탐험하면," + nextGrade.getName() + "이 될 수 있어요!";
+        }
+
+        return ProfileScreen.builder()
+                .nickname(user.getName())
+                .characterName(topGrade.getName())
+                .gradeDescription(inputDescription)
+                .previousImage(userProfileImageList.get(0))
+                .currentImage(userProfileImageList.get(1))
+                .nextImage(userProfileImageList.get(2))
+                .bookRows(bookRows)
+                .build();
+
     }
 
 
@@ -275,38 +295,31 @@ public class UserService {
      * showProfile 에서 상단 캐릭터 반환을 위해 선언되었다
      */
 
-    public List<Grade> getGradeList(User user){
+    public List<String> getGradeImageList(User user){
         //유저 등급 기준 앞 뒤 레벨을 가져오는 메서드
         //유저가 가진 등급 중 가장 높은 등급을 가져온다.
         UserGrade userGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).get();
         Grade grade = userGrade.getGrade();
-        List<Grade> returnGradeList = new ArrayList<Grade>();
+        List<String> returnProfileImageList = new ArrayList<>();
 
 
         // 각 Grade에 대한 음영처리 이미지도 삽입해야 한다.
         // 시간이 될 경우, 확장성 있게 다시 설계할 것
         if(grade.getId() == 1){ //1레벨 일 경우
-            returnGradeList.add(Grade.builder()
-                    .name("empty")
-                    .id(99L)
-                    .characterImage("emptyImage")  //물음표 이미지 추후 삽입할 것
-                    .build());
-            returnGradeList.add(gradeRepository.findById(1L).get());
-            returnGradeList.add(gradeRepository.findById(2L).get());
+            returnProfileImageList.add("물음표 사진 입력");
+            returnProfileImageList.add(gradeRepository.findById(1L).get().getCharacterImage());
+            returnProfileImageList.add(gradeRepository.findById(2L).get().getCharacterImage());
         }else if(grade.getId() == 4){   //마지막 레벨일 경우
-            returnGradeList.add(gradeRepository.findById(3L).get());
-            returnGradeList.add(gradeRepository.findById(4L).get());
-            returnGradeList.add(Grade.builder()
-                    .name("empty")
-                    .id(99L)
-                    .characterImage("emptyImage")  //물음표 이미지 추후 삽입할 것
-                    .build());
+            returnProfileImageList.add(gradeRepository.findById(3L).get().getCharacterImage());
+            returnProfileImageList.add(gradeRepository.findById(4L).get().getCharacterImage());
+            returnProfileImageList.add("물음표 사진 입력");
+
         }else{
-            returnGradeList.add(gradeRepository.findById(grade.getId() - 1).get());
-            returnGradeList.add(gradeRepository.findById(grade.getId()).get());
-            returnGradeList.add(gradeRepository.findById(grade.getId() + 1).get());
+            returnProfileImageList.add(gradeRepository.findById(grade.getId() - 1).get().getCharacterImage());
+            returnProfileImageList.add(gradeRepository.findById(grade.getId()).get().getCharacterImage());
+            returnProfileImageList.add(gradeRepository.findById(grade.getId() + 1).get().getCharacterImage());
         }
-        return returnGradeList;
+        return returnProfileImageList;
     }
 
 

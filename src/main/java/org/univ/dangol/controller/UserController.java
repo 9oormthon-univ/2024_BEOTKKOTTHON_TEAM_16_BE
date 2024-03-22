@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.univ.dangol.dto.Badge;
+import org.univ.dangol.dto.ProfileScreen;
 import org.univ.dangol.dto.UserLoginDTO;
 import org.univ.dangol.dto.UserProflieDTO;
 import org.univ.dangol.entity.Grade;
@@ -50,9 +52,14 @@ public class UserController {
     }
 
 
-    @PostMapping("users/{user_id}/questList")
+    @PostMapping("users/{userId}/questList")
     public TEST_QuestScreenDTO getQuestListController(@PathVariable("user_id") Long id){
         return userService.showQuestList(id);
+    }
+
+    @GetMapping("/users/{userId}/profile")
+    public ProfileScreen profile(@PathVariable("userId") Long id){
+        return userService.showProfile(id);
     }
 
 //    @PostMapping("/users/{user_id}/profile")

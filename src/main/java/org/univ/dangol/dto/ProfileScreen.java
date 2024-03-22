@@ -18,6 +18,6 @@ public class ProfileScreen {
     private String previousImage;
     private String currentImage;
     private String nextImage;
-    private List<BookRow> BookRows;
+    private List<BookRow> bookRows;
 
 }
