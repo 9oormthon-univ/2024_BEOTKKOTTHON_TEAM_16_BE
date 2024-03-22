@@ -293,7 +293,7 @@ public class DatabaseSeeding{
             }
             if (marketRepository.findById(3L).isEmpty()) {
                 Market market = Market.builder()
-                        .id(2L)
+                        .id(3L)
                         .name("가락 농수산물 도매시장")
                         .description("'싱싱한 수산물 가득 가락 시장'을 추천드립니다.\\n함께 가락 시장을 탐색하시겠습니까?")
                         .image("https://minio.nculture.org/amsweb-opt/multimedia_assets/116/28893/8809/c/28893-full-size.jpg")
