@@ -178,7 +178,7 @@ public class UserService {
         }
         for (int i = 0; i < 9 - userItemList.size(); i++) {
             // 더미 데이터 생성
-            Item item = itemRepository.findById((long) (userItemList.size() + i)).get();
+            Item item = itemRepository.findById((long) (userItemList.size() + i + 1)).get();
 
             userBadgeList.add(Badge.builder()
                     .id(item.getId())
