@@ -11,7 +11,7 @@ import org.univ.dangol.service.MarketService;
 @Slf4j
 @RestController
 @AllArgsConstructor
-public class TempMarketScreenController {
+public class MarketScreenController {
     private final MarketService marketService;
     @GetMapping("users/{userId}/markets/recommend")
     public MarketScreen recommendMarkets(@PathVariable("userId") Long userId){
