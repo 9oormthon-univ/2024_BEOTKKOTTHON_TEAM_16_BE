@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.univ.dangol.dto.ProfileScreen;
-import org.univ.dangol.dto.QuestScreen;
-import org.univ.dangol.dto.UserLoginDTO;
+import org.univ.dangol.dto.Questlist;
+import org.univ.dangol.dto.UserLoginDto;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.User;
 import org.univ.dangol.service.ItemService;
@@ -28,7 +28,7 @@ public class UserController {
     private final ItemService itemService;
     // 회원 가입 - POST
     @PostMapping("users/{nickName}")
-    public UserLoginDTO join(@PathVariable("nickName") String nickName) {
+    public UserLoginDto join(@PathVariable("nickName") String nickName) {
         Pair<Optional<User>, Optional<Grade>> userAndGrade = userService.join(nickName);
 
         User user = userAndGrade.getFirst()
@@ -36,7 +36,7 @@ public class UserController {
         Grade grade = userAndGrade.getSecond()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grade not found"));
 
-        return UserLoginDTO.builder()
+        return UserLoginDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .createAt(user.getCreatedAt())
@@ -44,9 +44,8 @@ public class UserController {
                 .build();
     }
 
-
     @GetMapping("users/{user_id}/questList")
-    public QuestScreen getQuestListController(@PathVariable("user_id") Long id){
+    public Questlist getQuestListController(@PathVariable("user_id") Long id){
         return userService.showQuestList(id);
     }
 
@@ -63,6 +62,4 @@ public class UserController {
 
         return "OK";
     }
-
-
 }

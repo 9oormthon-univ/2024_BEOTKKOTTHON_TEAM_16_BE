@@ -3,19 +3,26 @@ package org.univ.dangol.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.univ.dangol.entity.ItemStatus;
+import lombok.extern.jackson.Jacksonized;
+import org.univ.dangol.entity.PopupType;
 
 import java.time.LocalDateTime;
 
-@SuperBuilder
+/**
+ * BadgeDto
+ *
+ * Badge 정보를 광범위하게 담는다.
+ */
+
+@SuperBuilder(toBuilder = true)
+@Jacksonized
 @Getter
 @Setter
 public class Badge {
-    //Badge에 획득 여부를 보내야 할까
-    //
+
     private Long id;
     private String name;
-    private ItemStatus acquisitionMethod;
+    private PopupType acquisitionMethod;
     private LocalDateTime acquiredAt;
     private String description;
     private String imgUrl;

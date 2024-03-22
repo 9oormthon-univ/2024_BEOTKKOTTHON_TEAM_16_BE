@@ -25,10 +25,10 @@ public class AdventureService {
     private final UserItemRepository userItemRepository;
     private final ItemRepository itemRepository;
 
-    public List<ItemStatus> itemSeq = Arrays.asList(
-            ItemStatus.APP, ItemStatus.Location, ItemStatus.APP,
-            ItemStatus.Quiz, ItemStatus.Location, ItemStatus.Quiz,
-            ItemStatus.Quiz, ItemStatus.Location, ItemStatus.Location
+    public List<PopupType> itemSeq = Arrays.asList(
+            PopupType.APP, PopupType.Location, PopupType.APP,
+            PopupType.Quiz, PopupType.Location, PopupType.Quiz,
+            PopupType.Quiz, PopupType.Location, PopupType.Location
     );
 
     /**
@@ -47,7 +47,7 @@ public class AdventureService {
         List<UserItem> userItemList = userItemRepository.findByUser(user);
 
         int userGetItemSize = userItemList.size();                                  // 반환을 위해 별도 저장
-        ItemStatus itemTrigger = itemSeq.get(userGetItemSize);                      // 모두 모았을 때 예외처리 필요
+        PopupType itemTrigger = itemSeq.get(userGetItemSize);                      // 모두 모았을 때 예외처리 필요
         Item item = itemRepository.findById((long) (userGetItemSize + 1)).get();    // 사용자가 다음에 받아야 할 아이템
 
         // 아이템을 모두 수집했을 경우
@@ -126,7 +126,7 @@ public class AdventureService {
         List<UserItem> userItemList = userItemRepository.findByUser(user);
         Item item = itemRepository.findById((long) (userItemList.size() + 1)).get();
 
-        if(item.getType() == ItemStatus.Quiz && item.getQuizPositive().equals(userResult)) {
+        if(item.getType() == PopupType.Quiz && item.getQuizPositive().equals(userResult)) {
             UserItem userItem = UserItem.builder()
                     .user(user)
                     .item(item)
@@ -140,6 +140,25 @@ public class AdventureService {
             return false;
         }
 
+    }
+
+    /**
+     * checkLevelUp
+     * 클라이언트 측에서 레벨업 판단 후 API 호출 시
+     * 해당 내용 검증 및 검증 내용 반환
+     */
+
+    public boolean checkLevelUp(Long userId){
+        User user = userRepository.findById(userId).get();
+        int userItemSize = userItemRepository.findByUser(user).size();
+        int userGradeSize = userGradeRepository.findByUser(user).size();
+
+        if(userItemSize % 3 != 0) // 레벨이 맞지 않을 경우
+            return false;
+        else if(userGradeSize - 1 != (userItemSize / 3))  // 해당 Grade가 없을 경우
+            return false;
+        else
+            return true;
     }
 
     @Transactional

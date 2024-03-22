@@ -9,7 +9,13 @@ import java.util.List;
 @SuperBuilder
 @Getter
 @Setter
-public class QuestScreen {
+
+/**
+ * QuestScreen DTO
+ * QuestList를 만들 때 사용되는 DTO이다.
+ */
+
+public class Questlist {
     private int sequence;
     private List<Quest> quests;
 }

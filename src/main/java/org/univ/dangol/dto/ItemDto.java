@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
-import org.univ.dangol.entity.ItemStatus;
+import org.univ.dangol.entity.PopupType;
 
 import java.math.BigDecimal;
 
@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @Jacksonized
 @Getter
 @Setter
-public class ItemDTO {
+public class ItemDto {
     private Long Id;
-    private ItemStatus type;
+    private PopupType type;
 
     // 다음 뱃지 획득을 위함
     private Long nextId;

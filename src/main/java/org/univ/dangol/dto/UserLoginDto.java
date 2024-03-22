@@ -7,13 +7,11 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
 
 @SuperBuilder
-@Getter @Setter
-public class UserLoginDTO {
+@Getter
+@Setter
+public class UserLoginDto {
     private Long id;
     private String name;
-    private Long grade;
     private LocalDateTime createAt;
-
-    //    grade repo 작업 후 진행
-    //    private String grade;
+    private Long grade;
 }

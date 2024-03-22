@@ -9,8 +9,6 @@ import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
 
 @Entity
 @Table
@@ -29,7 +27,7 @@ public class Item {
     private Long Id;
 
     @Enumerated(EnumType.STRING)
-    private ItemStatus type;
+    private PopupType type;
 
     @Column(length = 10)
     private String name;
@@ -63,7 +61,7 @@ public class Item {
 
     // 첫번째 퀴즈 팝업 페이지
     @Column(length = 50)
-    private String quizWarningTitle;
+    private String quizTitle;
 
     @Column(length = 255)
     private String quizWarningImage;

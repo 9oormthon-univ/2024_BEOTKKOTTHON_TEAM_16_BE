@@ -7,6 +7,12 @@ import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
 
+/**
+ * BookRowDto
+ * Badge의 리스트와 reward 정보를 보관한다.
+ * Profile 페이지 구성에 사용된다.
+ */
+
 @SuperBuilder(toBuilder = true)
 @Jacksonized
 @Getter

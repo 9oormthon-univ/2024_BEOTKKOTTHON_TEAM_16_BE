@@ -1,8 +1,10 @@
 spring:
   datasource:
-    username: ${aws_db_username}
-    password: ${aws_db_password}
-    url: ${aws_db_url}
+    #    username: ${aws_db_username}
+    username: root
+    #    password: ${aws_db_password}
+    password: 1234
+    url: jdbc:mysql://localhost:3306/test
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
