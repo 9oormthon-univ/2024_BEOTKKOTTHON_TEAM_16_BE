@@ -5,14 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.univ.dangol.dto.Badge;
-import org.univ.dangol.dto.BookRow;
-import org.univ.dangol.dto.ProfileScreen;
-import org.univ.dangol.dto.Reward;
+import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.*;
 import org.univ.dangol.repository.*;
-import org.univ.dangol.test_dto.TEST_QuestDTO;
-import org.univ.dangol.test_dto.TEST_QuestScreenDTO;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,8 +34,8 @@ public class UserService {
 
         return findUser.map(user -> {
             // 사용자가 존재할 경우
-            Optional<UserGrade> findUserGrade = userGradeRepository.findByUserOrderByGradeIdDesc(findUser.get());
-            return Pair.of(Optional.of(user), Optional.of(findUserGrade.get().getGrade()));
+            List<UserGrade> findUserGrade = userGradeRepository.findByUserOrderByGradeIdDesc(findUser.get());
+            return Pair.of(Optional.of(user), Optional.of(findUserGrade.getFirst().getGrade()));
 
         }).orElseGet(() -> {
             // 사용자가 존재하지 않을 경우, 새 사용자와 1번 캐릭터와 1번 아이템을 제공한다.
@@ -81,7 +77,7 @@ public class UserService {
      * 사용자가 현재 풀이해야 할 퀘스트 팝업을 위한 서비스이다.
      */
     @Transactional
-    public TEST_QuestScreenDTO showQuestList(Long user_id) {
+    public QuestScreen showQuestList(Long user_id) {
         // 퀘스트 리스트라고 하였지만, 사실 아이템 리스트와 같다. 가지고 있냐, 가지고 있지 않냐의 차이.
         // 시퀀스와 퀘스트 객체를 만들어야 한다.
 
@@ -99,14 +95,14 @@ public class UserService {
         }
 
         //TestDTO 추후 변경해야 함
-        List<TEST_QuestDTO> testDTOs = new ArrayList<TEST_QuestDTO>();
+        List<Quest> testDTOs = new ArrayList<>();
 
         // 보여줘야 할 아이템 리스트
         // 마지막 단계일 경우 별도 처리가 필요하다
         if (userItemSize == 9) {
             for (int itemId = 7; itemId <= 9; itemId++) {
                 Item inputDummyItem = itemRepository.findById((long) itemId).get();
-                TEST_QuestDTO questDTO = TEST_QuestDTO.builder()
+                Quest questDTO = Quest.builder()
                         .id(inputDummyItem.getId())
                         .name(inputDummyItem.getName())
                         .description(inputDummyItem.getQuestDescription())
@@ -120,7 +116,7 @@ public class UserService {
             for (int i = 0; i < levelItemSize; i++) {
                 UserItem inputUserItem = userItemList.get(((userQuestLevel - 1) * 3) + i);
                 Item inputItem = itemRepository.findById(inputUserItem.getId()).get();
-                TEST_QuestDTO questDTO = TEST_QuestDTO.builder()
+                Quest questDTO = Quest.builder()
                         .id(inputItem.getId())
                         .name(inputItem.getName())
                         .description(inputItem.getQuestDescription())
@@ -131,7 +127,7 @@ public class UserService {
             }
             for (int j = 0; j < 3 - levelItemSize; j++) {         // 3 - 실제 보유 아이템 = 더미 데이터
                 Item inputDummyItem = itemRepository.findById((long) (userItemSize + j + 1)).get();
-                TEST_QuestDTO questDTO = TEST_QuestDTO.builder()
+                Quest questDTO = Quest.builder()
                         .id(inputDummyItem.getId())
                         .name(inputDummyItem.getName())
                         .description(inputDummyItem.getQuestDescription())
@@ -142,7 +138,7 @@ public class UserService {
             }
         }
 
-        return TEST_QuestScreenDTO.builder()
+        return QuestScreen.builder()
                 .quests(testDTOs)
                 .sequence(userQuestLevel)
                 .build();
@@ -263,7 +259,7 @@ public class UserService {
                 .build());
 
         // ProfileScreen 생성
-        UserGrade userTopGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).get();
+        UserGrade userTopGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).getFirst();
         Grade topGrade = userTopGrade.getGrade();
         Grade nextGrade = gradeRepository.findById(topGrade.getId() + 1).get();
 
@@ -298,7 +294,7 @@ public class UserService {
     public List<String> getGradeImageList(User user){
         //유저 등급 기준 앞 뒤 레벨을 가져오는 메서드
         //유저가 가진 등급 중 가장 높은 등급을 가져온다.
-        UserGrade userGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).get();
+        UserGrade userGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).getFirst();
         Grade grade = userGrade.getGrade();
         List<String> returnProfileImageList = new ArrayList<>();
 
