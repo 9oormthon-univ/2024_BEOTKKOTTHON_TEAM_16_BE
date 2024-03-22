@@ -54,18 +54,18 @@ public class AdventureService {
                     .build();
         }
 
-        switch(itemTrigger){
-            case ItemStatus.Location:
+        return switch (itemTrigger) {
+            case Location ->
                 // location 기반 서비스 실행
-                return locationEvent(user, item);
-            case ItemStatus.Quiz:
+                    locationEvent(user, item);
+            case Quiz ->
                 // quiz 기반 서비스 실행
-                return quizEvent(item);
-            case ItemStatus.APP:
+                    quizEvent(item);
+            case APP ->
                 // app 기반 서비스 실행
-                return locationEvent(user, item);
-        }
-        return item;
+                    locationEvent(user, item);
+            default -> item;
+        };
     }
 
     /**

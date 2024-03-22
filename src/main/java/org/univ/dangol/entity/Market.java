@@ -36,16 +36,6 @@ public class Market {
 //    @Column(length = 20)
 //    private String tag;
 
-    // address로 하나의 String으로 조작하여 넣어야 함
-    @Column(length = 10)
-    private String region1Depth;
-
-    @Column(length = 10)
-    private String region2Depth;
-
-    @Column(length = 10)
-    private String region3Depth;
-
-    @Column(length = 20)
-    private String roadName;
+    @Column(length = 80)
+    private String address;
 }
