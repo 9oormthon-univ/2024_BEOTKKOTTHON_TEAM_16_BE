@@ -24,7 +24,7 @@ public class ShopController {
     private final ItemService itemService;
     @GetMapping("users/{userId}/shopScreen")
     public ShopScreen shopScreen(@PathVariable("userId") Long userId){
-        List<ShopDTO> shopDTOList = shopService.getShopDTOs();
+        List<ShopDTO> shopDTOList = shopService.getShopDTOs(userId);
         Optional<Item> nextItem = itemService.getNextItem(userId);
 
         //location Item 삭제, 모든 Item 에는 위치가 있음
