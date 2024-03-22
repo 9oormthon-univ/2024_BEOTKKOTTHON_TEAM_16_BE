@@ -24,7 +24,6 @@ public class TempShopController {
     private final ItemService itemService;
     @GetMapping("users/{userId}/shopScreen")
     public ShopScreen shopScreen(@PathVariable("userId") Long userId){
-        // TO DO CHANGE REGION
         List<ShopDTO> shopDTOList = shopService.getShopDTOs();
         Optional<Item> nextItem = itemService.getNextItem(userId);
 
