@@ -23,23 +23,21 @@ public class ShopController {
     private final ShopService shopService;
     private final ItemService itemService;
     @GetMapping("users/{userId}/shopScreen")
-    public ShopScreen shopScreen(@PathVariable("userId") Long userId){
+    public ShopScreen shopScreen(@PathVariable("userId") Long userId) {
         List<ShopDTO> shopDTOList = shopService.getShopDTOs(userId);
         Optional<Item> nextItem = itemService.getNextItem(userId);
 
-        //location Item 삭제, 모든 Item 에는 위치가 있음
-        BadgePosition badgePosition = nextItem.map(item -> {
-            Double longitude = Optional.ofNullable(item.getLongitude()).map(BigDecimal::doubleValue).orElse(null);
-            Double latitude = Optional.ofNullable(item.getLatitude()).map(BigDecimal::doubleValue).orElse(null);
-            return BadgePosition.builder()
-                    .longitude(longitude)
-                    .latitude(latitude)
-                    .build();
-        }).orElse(null); // nextItem이 없거나 longitude/latitude가 null인 경우 null을 반환
+        BadgePosition badgePosition = nextItem
+                .filter(item -> item.getLatitude() != null && item.getLongitude() != null)
+                .map(item -> BadgePosition.builder()
+                        .latitude(item.getLatitude().doubleValue())
+                        .longitude(item.getLongitude().doubleValue())
+                        .build())
+                .orElse(null);
 
         return ShopScreen.builder()
-                 .shops(shopDTOList)
-                 .badgePosition(badgePosition)
-                 .build();
+                .shops(shopDTOList)
+                .badgePosition(badgePosition)
+                .build();
     }
 }
