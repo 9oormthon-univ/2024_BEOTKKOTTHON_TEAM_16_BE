@@ -29,7 +29,9 @@ public class Market {
     @Column(length = 50)
     private String description;
 
+    @Column(precision = 20, scale = 16)
     private BigDecimal latitude;
+    @Column(precision = 20, scale = 16)
     private BigDecimal longitude;
 
     // 태그는 기획단계에서 삭제

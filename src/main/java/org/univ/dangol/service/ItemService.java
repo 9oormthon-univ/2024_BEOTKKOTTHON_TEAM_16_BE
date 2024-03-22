@@ -43,6 +43,9 @@ public class ItemService {
                 .map(UserGrade::getGrade);
     }
 
+
+
+
     public List<Grade> getGradeList(Optional<User> user){
         // 이전 단계와 이후 단계의 캐릭터를 반환한다.
 
@@ -51,7 +54,7 @@ public class ItemService {
         Long currentLevel = grade.getId();
 
         List<Grade> gradeList = new ArrayList<>();
-        Grade dummyGrade = Grade.builder().image("?").build();
+        Grade dummyGrade = Grade.builder().characterEmptyImage("?").build();
 
         if(currentLevel == 1){
             // 1단계 일 경우, 이전 사진을 ?로 제공해야 한다.
