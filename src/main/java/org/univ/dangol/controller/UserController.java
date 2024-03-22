@@ -45,7 +45,7 @@ public class UserController {
                 .id(user.getId())
                 .name(user.getName())
                 .createAt(user.getCreatedAt())
-                .grade(grade.getTier())
+                .grade(grade.getId())
                 .build();
     }
 
