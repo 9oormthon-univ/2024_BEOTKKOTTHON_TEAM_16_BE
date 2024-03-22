@@ -60,9 +60,9 @@ public class TempProfileScreenController {
                 .id(9L).name("신선한 과일 바구니").acquisitionMethod(ItemStatus.Location).acquiredAt(null).description("아홉 번째 퀘스트 보상 신선한 과일 바구니 배지")
                 .imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/FruitbasketShadow.png")
                 .build();
-        Reward reward1 = Reward.builder().id(1).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
-        Reward reward2 = Reward.builder().id(2).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
-        Reward reward3 = Reward.builder().id(3).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
+        Reward reward1 = Reward.builder().id(1L).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
+        Reward reward2 = Reward.builder().id(2L).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
+        Reward reward3 = Reward.builder().id(3L).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png").build();
 
         List<Badge> badges1 = new ArrayList<>(); badges1.add(badge1); badges1.add(badge2); badges1.add(badge3);
         List<Badge> badges2 = new ArrayList<>(); badges2.add(badge4); badges2.add(badge5); badges2.add(badge6);
@@ -72,7 +72,7 @@ public class TempProfileScreenController {
         bookRows1.add(BookRow.builder().badges(badges2).reward(reward2).build());
         bookRows1.add(BookRow.builder().badges(badges3).reward(reward3).build());
 
-        Reward reward0 = Reward.builder().id(1).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png").build();
+        Reward reward0 = Reward.builder().id(1L).isAcquired(false).isUsed(false).imgUrl("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png").build();
         bookRows2.add(BookRow.builder().badges(badges1).reward(reward0).build());
         bookRows2.add(BookRow.builder().badges(badges2).reward(reward2).build());
         bookRows2.add(BookRow.builder().badges(badges3).reward(reward3).build());
