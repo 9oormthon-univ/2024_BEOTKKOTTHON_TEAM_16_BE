@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 public class RecommendMarket {
-    private int id;
+    private long id;
     private String description;
     private String imgUrl;
     private double latitude;
