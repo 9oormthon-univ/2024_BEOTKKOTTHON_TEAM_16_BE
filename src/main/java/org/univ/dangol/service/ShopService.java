@@ -39,7 +39,7 @@ public class ShopService {
         }
         return ans;
     }
-    @Transactional(readOnly = true)
+
     public List<Shop> getAllShops() {
         return shopRepository.findAll();
     }
