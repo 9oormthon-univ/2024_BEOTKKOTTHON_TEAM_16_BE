@@ -23,5 +23,5 @@ public class LevelUpPopup {
     // 캐릭터 설명
     private String description;
     // 상인회 위도, 경도
-    private Position position;
+    private BadgePosition badgePosition;
 }

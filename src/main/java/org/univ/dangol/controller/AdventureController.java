@@ -9,6 +9,8 @@ import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.PopupType;
+import org.univ.dangol.entity.User;
+import org.univ.dangol.repository.UserGradeRepository;
 import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
@@ -36,9 +38,9 @@ public class AdventureController {
         Grade grade = userService.getTopGrade(userId);
          if(adventureService.checkLevelUp(userId)){
 
-             Position position = Position.builder()
-                     .latitude(BigDecimal.valueOf(37.49844468006748))
-                     .longitude(BigDecimal.valueOf(127.15125418549232))
+             BadgePosition badgePosition = BadgePosition.builder()
+                     .latitude(BigDecimal.valueOf(37.3517946947480700))
+                     .longitude(BigDecimal.valueOf(127.0714870747828400))
                      .build();
 
              return LevelUpPopup.builder()
@@ -51,7 +53,7 @@ public class AdventureController {
                              "우와 벌써 트로피를 " + (userService.getTopGrade(userId).getId() - 1) + "개나 획득하셨군요!?\n" +
                                      grade.getName() + "이 되신 것을 축하드립니다!"
                      )  // 뱃지 갯수 넣기
-                     .position(position)
+                     .badgePosition(badgePosition)
                      .build();
          }else{
              return null;
