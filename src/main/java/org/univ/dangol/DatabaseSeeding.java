@@ -144,7 +144,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(9L)
                         .name("팬다 주니어의 국밥집")
-                        .address("카카오시 구름구 AI동 76번지")
+                        .address("카카오시 구름구 AI동 34번지")
                         .latitude(BigDecimal.valueOf(37.35126391229903))
                         .longitude(BigDecimal.valueOf(127.07220892405834))
                         .image(" ")
@@ -155,9 +155,9 @@ public class DatabaseSeeding{
             }
             if (shopRepository.findById(10L).isEmpty()){
                 Shop shop = Shop.builder()
-                        .id(9L)
+                        .id(10L)
                         .name("스카피의 이상한 족발집")
-                        .address("카카오시 구름구 AI동 76번지")
+                        .address("카카오시 구름구 AI동 25번지")
                         .latitude(BigDecimal.valueOf(37.35126391229903))
                         .longitude(BigDecimal.valueOf(127.07220892405834))
                         .image(" ")
@@ -168,11 +168,11 @@ public class DatabaseSeeding{
             }
             if (shopRepository.findById(11L).isEmpty()){
                 Shop shop = Shop.builder()
-                        .id(9L)
+                        .id(11L)
                         .name("팬다 주니어의 국밥집")
-                        .address("카카오시 구름구 AI동 76번지")
-                        .latitude(BigDecimal.valueOf(37.35126391229903))
-                        .longitude(BigDecimal.valueOf(127.07220892405834))
+                        .address("카카오시 구름구 AI동 176번지")
+                        .latitude(BigDecimal.valueOf(37.35158125346711))
+                        .longitude(BigDecimal.valueOf(127.07265222934058))
                         .image(" ")
                         .category("국밥집")
                         .tag("돼지국밥-소국밥")
@@ -181,18 +181,192 @@ public class DatabaseSeeding{
             }
             if (shopRepository.findById(12L).isEmpty()){
                 Shop shop = Shop.builder()
-                        .id(9L)
-                        .name("팬다 주니어의 국밥집")
-                        .address("카카오시 구름구 AI동 76번지")
-                        .latitude(BigDecimal.valueOf(37.35126391229903))
-                        .longitude(BigDecimal.valueOf(127.07220892405834))
+                        .id(12L)
+                        .name("케로와 베로니의 과일집")
+                        .address("카카오시 구름구 AI동 726번지")
+                        .latitude(BigDecimal.valueOf(37.35187402515536))
+                        .longitude(BigDecimal.valueOf(127.07275409179769))
                         .image(" ")
-                        .category("국밥집")
-                        .tag("돼지국밥-소국밥")
+                        .category("과일")
+                        .tag("사과-배")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(13L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(13L)
+                        .name("양몬드의 점집")
+                        .address("카카오시 구름구 AI동 763번지")
+                        .latitude(BigDecimal.valueOf(37.35229541165852))
+                        .longitude(BigDecimal.valueOf(127.07250054623943))
+                        .image(" ")
+                        .category("점집")
+                        .tag("운명-명운")
                         .build();
                 shopRepository.save(shop);
             }
 
+        }
+
+        public void db9oormthonItemInit(){
+            if (itemRepository.findById(1L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(1L)
+                        .type(PopupType.APP)
+                        .name("빛나는 탐험가의 모자")
+                        .popupDescription("탐험하장에 오신 것을 축하드려요!")
+                        .questDescription("탐험하장!에 오신 여러분을 환영해요!?")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Hat.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/HatShadow.png")
+                        .build();
+                // 위도 경도 추후 추가할 것
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(2L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(2L)
+                        .type(PopupType.Location)
+                        .name("진실의 손전등")
+                        .popupDescription("환영해요! 구름톤 시장!")
+                        .profileDescription("시장 탐험을 위해 필요한 손전등. 바라는 진실을 비추어준다는 소문이 있다.")
+                        .questDescription("이제는 직접 구름톤 시장을\n탐험해볼 시간이에요!")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Flashlight.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/FlashlightShadow.png")
+                        .build();
+                // 위도 경도 추후 추가할 것
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(3L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(3L)
+                        .type(PopupType.APP)
+                        .name("단골손님")
+                        .popupDescription("단골손님이 되신것을 축하드립니다!\n전통시장과 더 가까워져볼까요?")
+                        .profileDescription("단골 손님에게 주어지는 뱃지 더 나은 서비스를 기대할 수 있을 것 같다.")
+                        .questDescription("좋아하는 상점을\n단골로 등록해보세요!")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Bag.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/BagShadow.png")
+                        .build();
+                // 위도 경도 추후 추가할 것
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(4L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(4L)
+                        .type(PopupType.Quiz)
+                        .name("푸르른 녹두")
+                        .popupDescription("생쥐를 물리쳤어요!\n녹두를 생쥐의 마수로부터 해방시켰군요!!")
+                        .profileDescription("왜 생쥐들은 녹두를 좋아할까..? 시장에는 더 맛있는게 많은데 말이야...")
+                        .questDescription("시장을 탐험하다보면,\n푸르른 녹두 배지를 획득할 수 있어요!")
+                        .quizTitle("녹두 하나 주면 안 잡아먹지!")
+                        .quizWarningImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/EventBadgeRat.png")
+                        .quizWarningImageText("생쥐(찍찍!)")
+                        .quizConfirmText("녹두 되찾으러 가기")
+                        .quizWarningImage("")
+                        .quizQuestion("마천 시장은 전문 시장이다.")
+                        .quizPositive("O")
+                        .quizNegative("X")
+                        .latitude(BigDecimal.valueOf(37.497487590252675f))
+                        .longitude(BigDecimal.valueOf(127.15083584189415))
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Wheat.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/WheatShadow.png")
+                        .build();
+                // 위도 경도 추후 추가할 것
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(5L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(5L)
+                        .type(PopupType.Location)
+                        .name("달다구리 꿀")
+                        .popupDescription("꿀을 되찾았어요!\n달다구리 꿀 배지는 덤인 것 같군요!")
+                        .profileDescription("달다.. 그냥 매우 달다. 가래떡에 찍어먹으면 딱이겠는데!")
+                        .questDescription("시장을 탐험하다보면,\n달다구리 꿀 배지를 발견할 수 있어요!")
+                        .latitude(BigDecimal.valueOf(37.4978832))
+                        .longitude(BigDecimal.valueOf(127.151115))
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Honeypot.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/HoneypotShadow.png")
+                        .build();
+                // 위도 경도 추후 추가할 것
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(6L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(6L)
+                        .type(PopupType.Quiz)
+                        .name("말랑말랑 꿀떡")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Honeyricecake.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/HoneyricecakeShadow.png")
+                        .popupDescription("호랑이를 물리쳤어요\n축하드려요! 이제 떡은 우리의 것이에요!")
+                        .profileDescription("육식성 호랑이가 노렸던 떡이다... 소화는 시킬 수 있었던 것일까?")
+                        .quizWarningImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/EventBadgeTiger.png")
+                        .quizWarningImageText("호랑이(어흥!)")
+                        .questDescription("시장을 탐험하다보면\n말랑말랑 꿀떡 배지를 획득할 수 있어요")
+                        .quizTitle("떡 하나 주면 안 잡아먹지!")
+                        .quizWarningImage("")
+                        .quizConfirmText("떡 구하러 가기")
+                        .quizQuestion("생방송 투데이에 나온\n30년 맛집의 이름은?")
+                        .quizPositive("소문난 곱창")
+                        .quizNegative("맛좋은 곱창")
+                        .latitude(BigDecimal.valueOf(37.49802380619021))
+                        .longitude(BigDecimal.valueOf(127.15030773074854))
+                        .build();
+                // 위도 경도 추후 추가할 것
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(7L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(7L)
+                        .type(PopupType.Quiz)
+                        .name("복슬복슬 복숭아")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Peach.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/PeachShadow.png")
+                        .popupDescription("곰을 물리쳤어요!\n곰으로부터 복슬복슬 복숭아를 지켜냈어요!")
+                        .quizWarningImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/EventBadgeBear.png")
+                        .quizWarningImageText("곰(크앙!)")
+                        .profileDescription("곰에게는 마늘과 쑥을! 나에게는 복슬복슬 복숭아를!")
+                        .questDescription("시장을 탐험하다보면\n복슬복슬 복숭아 배지를 발견할 수 있어요!")
+                        .quizTitle("과일 하나 주면 안 잡아먹지!")
+                        .quizConfirmText("과일 구하러 가기")
+                        .quizQuestion("마천 시장은 조선시대 때\n말을 기르던 양마장이\n있는 데서 유래되었다.")
+                        .quizPositive("O")
+                        .quizNegative("X")
+                        .latitude(BigDecimal.valueOf(37.498921855945575))
+                        .longitude(BigDecimal.valueOf(127.15048044919968))
+                        .build();
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(8L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(8L)
+                        .type(PopupType.Location)
+                        .name("바삭바삭 녹두전")
+                        .popupDescription("비오는 날에는 녹두전이죠!\n바삭바삭 녹두전 배지를 획득하셨어요!")
+                        .profileDescription("비오는 날 녹두전! 크으 못참지!")
+                        .questDescription("시장을 탐험하다보면\n바삭바삭 녹두전 배지를 획득할 수 있어요!")
+                        .latitude(BigDecimal.valueOf(37.4988331))
+                        .longitude(BigDecimal.valueOf(127.1513726))
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Jeon.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/JeonShadow.png")
+                        .build();
+                itemRepository.save(item);
+            }
+            if (itemRepository.findById(9L).isEmpty()) {
+                Item item = Item.builder()
+                        .Id(9L)
+                        .type(PopupType.Location)
+                        .name("과일 바구니")
+                        .popupDescription("과일 바구니 획득을 축하드립니다!\n신선한 과일 바구니를 획득했어요!")
+                        .profileDescription("산지배송 과일 바구니..! 신선함이 느껴진다아!")
+                        .questDescription("시장을 탐험하다보면,\n말랑말랑 꿀떡 배지를 발견할 수 있어요")
+                        .latitude(BigDecimal.valueOf(37.4993124))
+                        .longitude(BigDecimal.valueOf(127.1521428))
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Fruitbasket.png")
+                        .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/FruitbasketShadow.png")
+                        .build();
+                itemRepository.save(item);
+
+            }
         }
         public void dbGradeInit(){
             if(gradeRepository.findById(1L).isEmpty()){
