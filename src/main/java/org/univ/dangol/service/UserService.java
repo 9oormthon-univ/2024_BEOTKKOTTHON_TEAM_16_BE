@@ -79,15 +79,17 @@ public class UserService {
      * 사용자가 현재 풀이해야 할 퀘스트 팝업을 위한 서비스이다.
      */
     @Transactional
-    public Questlist showQuestList(Long user_id) {
-        // 퀘스트 리스트라고 하였지만, 사실 아이템 리스트와 같다. 가지고 있냐, 가지고 있지 않냐의 차이.
-        // 시퀀스와 퀘스트 객체를 만들어야 한다.
+    public QuestList showQuestList(Long user_id) {
 
-        // 몇번째 퀘스트인지 확인
+        // user - 사용자 정보
+        // userItemSize - 사용자가 가지고 있는 아이템 사이즈
+
         User user = userRepository.findById(user_id).get();
         List<UserItem> userItemList = userItemRepository.findAllByUser(user);
         int userItemSize = userItemList.size();
         int userQuestLevel;
+
+        // userQuestLevel - 상단에 뜨는 퀘스트리스트 레벨 (1번째 퀘스트, 2번째 퀘스트, 3번째 퀘스트)
 
         if (userItemSize != 9) {
             userQuestLevel = (userItemList.size() / 3) + 1;
@@ -96,38 +98,46 @@ public class UserService {
             userQuestLevel = 3;
         }
 
-        //TestDTO 추후 변경해야 함
-        List<Quest> testDTOs = new ArrayList<>();
+        // 각 퀘스트를 담는 questListDto
+        List<Quest> questListDto = new ArrayList<>();
 
-        // 보여줘야 할 아이템 리스트
-        // 마지막 단계일 경우 별도 처리가 필요하다
-        if (userItemSize == 9) {
+
+        // 아이템 사이즈가 9를 넘을 경우
+        // 7, 8, 9가 완료되었음을
+        if (userItemSize > 9) {
             for (int itemId = 7; itemId <= 9; itemId++) {
-                Item inputDummyItem = itemRepository.findById((long) itemId).get();
+                Item item = itemRepository.findById((long) itemId).get();
                 Quest questDTO = Quest.builder()
-                        .id(inputDummyItem.getId())
-                        .name(inputDummyItem.getName())
-                        .description(inputDummyItem.getQuestDescription())
+                        .id(item.getId())
+                        .name(item.getName())
+                        .description(item.getQuestDescription())
                         .isAcquired(true)
-                        .imgUrl(inputDummyItem.getImage())
+                        .imgUrl(item.getImage())
                         .build();
-                testDTOs.add(questDTO);
+                questListDto.add(questDTO);
             }
         } else {
-            int levelItemSize = userItemSize - ((userQuestLevel - 1) * 3);  // 퀘스트 리스트에 넣어야 할 아이템 갯수
-            for (int i = 0; i < levelItemSize; i++) {
-                UserItem inputUserItem = userItemList.get(((userQuestLevel - 1) * 3) + i);
-                Item inputItem = itemRepository.findById(inputUserItem.getId()).get();
+            // 아이템 리스트가 9 미만일 경우
+            // 아이템 파싱을 진행한다 - 1단계 (1~3) 2단계 (4~6) 3단계 (7~9)
+            // 아이템 소유 갯수에 따라 더미와 실제 값을 구분해서 넣는다. if) item 2개 소유 -> 진짜 2개, 가짜 1개
+
+            // 해당 레벨에서 사용자가 몇개의 아이템을 가지고 있는지 판단
+            int possessItemSize = userItemSize - ((userQuestLevel - 1) * 3);  // 퀘스트 리스트에 넣어야 할 아이템 갯수
+            // 실제 들어 있는 아이템 값을 리스트에 넣는다.
+            // 1, 2, 3 회 반복
+            for (int i = 0; i < possessItemSize; i++) {
+                // 반복 시작 위치 파악
+                Item input = itemRepository.findById((((userQuestLevel - 1) * 3L) + 1 + i)).get();
                 Quest questDTO = Quest.builder()
-                        .id(inputItem.getId())
-                        .name(inputItem.getName())
-                        .description(inputItem.getQuestDescription())
+                        .id(input.getId())
+                        .name(input.getName())
+                        .description(input.getQuestDescription())
                         .isAcquired(true)
-                        .imgUrl(inputItem.getImage())
+                        .imgUrl(input.getImage())
                         .build();
-                testDTOs.add(questDTO);
+                questListDto.add(questDTO);
             }
-            for (int j = 0; j < 3 - levelItemSize; j++) {         // 3 - 실제 보유 아이템 = 더미 데이터
+            for (int j = 0; j < 3 - possessItemSize; j++) {         // 3 - 실제 보유 아이템 = 더미 데이터
                 Item inputDummyItem = itemRepository.findById((long) (userItemSize + j + 1)).get();
                 Quest questDTO = Quest.builder()
                         .id(inputDummyItem.getId())
@@ -136,12 +146,12 @@ public class UserService {
                         .isAcquired(false)
                         .imgUrl(inputDummyItem.getUnactivatedImage())
                         .build();
-                testDTOs.add(questDTO);
+                questListDto.add(questDTO);
             }
         }
 
-        return Questlist.builder()
-                .quests(testDTOs)
+        return QuestList.builder()
+                .quests(questListDto)
                 .sequence(userQuestLevel)
                 .build();
     }

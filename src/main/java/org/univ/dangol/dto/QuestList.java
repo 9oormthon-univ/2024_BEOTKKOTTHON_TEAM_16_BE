@@ -15,7 +15,7 @@ import java.util.List;
  * QuestList를 만들 때 사용되는 DTO이다.
  */
 
-public class Questlist {
+public class QuestList {
     private int sequence;
     private List<Quest> quests;
 }

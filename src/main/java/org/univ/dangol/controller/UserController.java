@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.univ.dangol.dto.ProfileScreen;
-import org.univ.dangol.dto.Questlist;
+import org.univ.dangol.dto.QuestList;
 import org.univ.dangol.dto.UserLoginDto;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.User;
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping("users/{user_id}/questList")
-    public Questlist getQuestListController(@PathVariable("user_id") Long id){
+    public QuestList getQuestListController(@PathVariable("user_id") Long id){
         return userService.showQuestList(id);
     }
 
