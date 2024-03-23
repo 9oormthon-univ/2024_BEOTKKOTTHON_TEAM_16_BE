@@ -13,6 +13,9 @@ import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -33,24 +36,22 @@ public class AdventureController {
 
     @PostMapping("users/{userId}/levelUp")
     public LevelUpPopup levelUpController(@PathVariable("userId") Long userId){
-
         Grade grade = userService.getTopGrade(userId);
-
          if(adventureService.checkLevelUp(userId)){
              return LevelUpPopup.builder()
-                     .tierImgUrl("으아 넣어야 한다")
+                     .tierImgUrl(grade.getTier())
                      .title(grade.getTier() + "Level UP!")
                      .grade(grade.getName())
                      .characterImgUrl(grade.getCharacterImage())
                      .description(
-                             "우와 벌써 배지를" + "몇개" + "나 획득하셨군요 ?!\n" +
+                             "우와 벌써 트로피를" + "몇개" + "나 획득하셨군요 ?!\n" +
                                      grade.getName() + "이 되신 것을 축하드립니다!"
                      )  // 뱃지 갯수 넣기
                      //.latitude(11.111f) // 시장 상인회 위도 넣기
                      //.longitude(11.111f) // 시장 상인회 경도 넣기
                      .build();
          }else{
-            //null
+             return null;
          }
     }
 
@@ -107,17 +108,27 @@ public class AdventureController {
     }
 
     @PostMapping("users/{user_id}/answer/{answer}")
-    public String getQuizAnswer(
+    public Map<String, Boolean> getQuizAnswer(
             @PathVariable("user_id") Long id,
             @PathVariable("answer") String answer){
+
+        Map<String, Boolean> response = new HashMap<>();
+
         if(adventureService.quizValidation(answer, id))
         {
-            return "isCorrect = true";
+            if(adventureService.checkLevelUp(id)){
+                response.put("isCollect", true);
+                response.put("isLevelUp", true);
+            }else{
+                response.put("isCollect", true);
+                response.put("isLevelUp", false);
+            }
         }
         else {
-            return "isCorrect = false";
+            response.put("isCollect", false);
+            response.put("isLevelUp", false);
         }
+
+        return response;
     }
-
-
 }

@@ -34,6 +34,11 @@ public class Market {
     @Column(precision = 20, scale = 16)
     private BigDecimal longitude;
 
+    @Column(precision = 20, scale = 16)
+    private BigDecimal associationLat;
+    @Column(precision = 20, scale = 16)
+    private BigDecimal associationLng;
+
     // 태그는 기획단계에서 삭제
 //    @Column(length = 20)
 //    private String tag;

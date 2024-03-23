@@ -43,8 +43,9 @@ public class DatabaseSeeding{
             if(gradeRepository.findById(1L).isEmpty()){
                 Grade grade = Grade.builder()
                         .id(1L)
-                        .tier("bronze")
+                        .tier("Bronze")
                         .name("탐험가")
+                        .tierImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/blonzeTierIcon.png")
                         .characterImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/bronzeGrade.png")
                         .characterEmptyImage(null)
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
@@ -57,8 +58,9 @@ public class DatabaseSeeding{
             if(gradeRepository.findById(2L).isEmpty()){
                 Grade grade = Grade.builder()
                         .id(2L)
-                        .tier("silver")
+                        .tier("Silver")
                         .name("보석 사냥꾼")
+                        .tierImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverTierIcon.png")
                         .characterImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/siverGrade.png")
                         .characterEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/sliverGradeShadow-big-removebg-preview.png")
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
@@ -71,8 +73,9 @@ public class DatabaseSeeding{
             if(gradeRepository.findById(3L).isEmpty()){
                 Grade grade = Grade.builder()
                         .id(3L)
-                        .tier("gold")
+                        .tier("Gold")
                         .name("전설 탐험가")
+                        .tierImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldTierIcon.png")
                         .characterImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGrade.png")
                         .characterEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/goldGradeShadow-big-removebg-preview.png")
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
@@ -85,8 +88,9 @@ public class DatabaseSeeding{
             if(gradeRepository.findById(4L).isEmpty()){
                 Grade grade = Grade.builder()
                         .id(4L)
-                        .tier("diamond")
+                        .tier("Diamond")
                         .name("수호자")
+                        .tierImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/platinumTierIcon.png")
                         .characterImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/platinumGrade.png")
                         .characterEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/platinumGradeShadow-big-removebg-preview.png")
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")

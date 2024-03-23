@@ -22,8 +22,12 @@ public class Grade {
     @Id // 고정된 테이블 - 수동 pk 입력
     private Long id;
 
-    @Column(length = 15)
+    @Column(length = 10)
     private String tier;    // (`Gold` Level UP)
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String tierImage;
 
     @Lob
     @Column(columnDefinition = "TEXT")
@@ -45,7 +49,7 @@ public class Grade {
     @Column(columnDefinition = "TEXT")
     private String trophyRibbonImage;
 
-    @Column(length = 15)
+    @Column(length = 10)
     private String name;    // 장터 수호자
 
     @Column
