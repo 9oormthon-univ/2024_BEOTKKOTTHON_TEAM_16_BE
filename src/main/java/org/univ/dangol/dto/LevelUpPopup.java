@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 public class LevelUpPopup {
     // 티어 이미지
     private String tierImgUrl;
+    // 레벨업 성공 시 레벨
+    private Long level;
     // 팝업 타이틀
     private String title;
     // 등급 이름

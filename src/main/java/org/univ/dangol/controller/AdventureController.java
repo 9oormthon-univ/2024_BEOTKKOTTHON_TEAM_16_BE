@@ -9,6 +9,7 @@ import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.PopupType;
+import org.univ.dangol.entity.User;
 import org.univ.dangol.repository.UserGradeRepository;
 import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
@@ -46,6 +47,7 @@ public class AdventureController {
                      .tierImgUrl(grade.getTierImage())
                      .title(grade.getTier() + "Level UP!")
                      .grade(grade.getName())
+                     .level(userService.getTopGrade(userId).getId())
                      .characterImgUrl(grade.getCharacterImage())
                      .description(
                              "우와 벌써 트로피를" + (userService.getTopGrade(userId).getId() - 1) + "나 획득하셨군요 ?!\n" +
