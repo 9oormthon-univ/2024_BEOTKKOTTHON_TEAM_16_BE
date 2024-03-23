@@ -1,8 +1,8 @@
 spring:
   datasource:
-    username: root
-    password: 1234
-    url: jdbc:mysql://localhost:3306/test
+    username: ${aws_db_username}
+    password: ${aws_db_password}
+    url: ${aws_db_url}
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
@@ -24,3 +24,8 @@ spring:
       enabled: true
       max-file-size: 100MB
       max-request-size: 300MB
+  server:
+    error:
+      include-stacktrace: never
+      include-message: never
+      include-binding-errors: never
