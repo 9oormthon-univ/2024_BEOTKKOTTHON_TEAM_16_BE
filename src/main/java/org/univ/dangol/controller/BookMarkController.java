@@ -7,7 +7,7 @@ import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.univ.dangol.dto.BookMarkDTO;
+import org.univ.dangol.dto.BookmarkDto;
 import org.univ.dangol.entity.BookMark;
 import org.univ.dangol.service.BookMarkService;
 
@@ -30,18 +30,18 @@ public class BookMarkController {
 
     // 별도 DTO
     @PostMapping("/users/{userId}/bookmarks/{shopId}")
-    public BookMarkDTO setBookmark(
+    public BookmarkDto setBookmark(
             @PathVariable("userId") Long userId,
             @PathVariable("shopId") Long shopId
     ){
         Pair<BookMark, String> returnBookMark = bookMarkService.setBookmark(userId, shopId);
         if(returnBookMark.getSecond().equals("created")){
-            return BookMarkDTO.builder()
+            return BookmarkDto.builder()
                     .bookmark(returnBookMark.getFirst())
                     .isBookmarked(true)
                     .build();
         }else{ //deleted
-            return BookMarkDTO.builder()
+            return BookmarkDto.builder()
                     .bookmark(returnBookMark.getFirst())
                     .isBookmarked(false)
                     .build();

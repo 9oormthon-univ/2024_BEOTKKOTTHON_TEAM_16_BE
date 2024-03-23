@@ -30,8 +30,8 @@ public class ShopController {
         BadgePosition badgePosition = nextItem
                 .filter(item -> item.getLatitude() != null && item.getLongitude() != null)
                 .map(item -> BadgePosition.builder()
-                        .latitude(item.getLatitude().doubleValue())
-                        .longitude(item.getLongitude().doubleValue())
+                        .longitude(item.getLongitude())
+                        .latitude(item.getLatitude())
                         .build())
                 .orElse(null);
 

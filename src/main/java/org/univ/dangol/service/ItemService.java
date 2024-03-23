@@ -4,11 +4,11 @@ package org.univ.dangol.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.univ.dangol.dto.UserProflieDTO;
-import org.univ.dangol.entity.*;
+import org.univ.dangol.entity.Item;
+import org.univ.dangol.entity.User;
+import org.univ.dangol.entity.UserItem;
 import org.univ.dangol.repository.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

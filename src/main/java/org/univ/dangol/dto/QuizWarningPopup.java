@@ -9,11 +9,13 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @Getter
 @Setter
-public class BadgePopup {
-    // 뱃지 획득 타이틀
+public class QuizWarningPopup {
+    // 제목
     private String title;
-    // 뱃지에 대한 설명
-    private String description;
-    // 뱃지 이미지
-    private String imgUrl;
+    // 이미지 이름
+    private String name;    // ex) 호랑이(어흥)
+    // 이미지
+    private String image;
+    // 선택 메세지
+    private String confirm;
 }

@@ -77,7 +77,7 @@ public class UserService {
      * 사용자가 현재 풀이해야 할 퀘스트 팝업을 위한 서비스이다.
      */
     @Transactional
-    public QuestScreen showQuestList(Long user_id) {
+    public Questlist showQuestList(Long user_id) {
         // 퀘스트 리스트라고 하였지만, 사실 아이템 리스트와 같다. 가지고 있냐, 가지고 있지 않냐의 차이.
         // 시퀀스와 퀘스트 객체를 만들어야 한다.
 
@@ -138,7 +138,7 @@ public class UserService {
             }
         }
 
-        return QuestScreen.builder()
+        return Questlist.builder()
                 .quests(testDTOs)
                 .sequence(userQuestLevel)
                 .build();
@@ -282,14 +282,16 @@ public class UserService {
 
     }
 
-
-
-
     /**
      * getGradeList
      * 사용자의 이전 등급, 현재 등급, 다음 등급을 List로 저장해서 반환한다.
      * showProfile 에서 상단 캐릭터 반환을 위해 선언되었다
      */
+
+    public Grade getTopGrade(Long userId){
+        User user = userRepository.findById(userId).get();
+        return userGradeRepository.findByUserOrderByGradeIdDesc(user).get(0).getGrade();
+    }
 
     public List<String> getGradeImageList(User user){
         //유저 등급 기준 앞 뒤 레벨을 가져오는 메서드
