@@ -23,7 +23,8 @@ public class DatabaseSeeding{
         dbSeedingService.dbGradeInit();
         dbSeedingService.dbItemInit();
         dbSeedingService.dbMarketInit();
-        dbSeedingService.dbShopInit();
+        // dbSeedingService.dbShopInit();
+        dbSeedingService.db9oormthonShopInit();
     }
     @Component
     @Transactional
@@ -609,8 +610,8 @@ public class DatabaseSeeding{
                         .name("마천 시장")
                         .description("'맛집으로 넘치는 마천 시장'을 추천드립니다.\n함께 마천 시장을 탐색하시겠습니까?")
                         .image("http://modo.phinf.naver.net/20160324_75/1458803635350ff1q6_JPEG/mosaSEAY4j.jpeg?type=f530_353")
-                        .latitude(BigDecimal.valueOf(37.49815517860691))
-                        .longitude(BigDecimal.valueOf(127.1504139325548))
+                        .latitude(BigDecimal.valueOf(37.3518562))
+                        .longitude(BigDecimal.valueOf(127.0717912))
                         .address("서울특별시 송파구 마천로45길 23")
                         .build();
                 marketRepository.save(market);
