@@ -13,6 +13,9 @@ import org.univ.dangol.dto.BookmarkScreen;
 import org.univ.dangol.entity.BookMark;
 import org.univ.dangol.service.BookMarkService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -35,21 +38,17 @@ public class BookMarkController {
 
     // 별도 DTO
     @PostMapping("/users/{userId}/bookmarks/{shopId}")
-    public BookmarkDto setBookmark(
+    public Map<String, Boolean> setBookmark(
             @PathVariable("userId") Long userId,
             @PathVariable("shopId") Long shopId
     ){
-        Pair<BookMark, String> returnBookMark = bookMarkService.setBookmark(userId, shopId);
-        if(returnBookMark.getSecond().equals("created")){
-            return BookmarkDto.builder()
-                    .bookmark(returnBookMark.getFirst())
-                    .isBookmarked(true)
-                    .build();
+        Map<String, Boolean> bookmarkDto = new HashMap<String, Boolean>();
+        Pair<BookMark, String> bookmarkCetification = bookMarkService.setBookmark(userId, shopId);
+        if(bookmarkCetification.getSecond().equals("created")){
+            bookmarkDto.put("isBookmarked", true);
         }else{ //deleted
-            return BookmarkDto.builder()
-                    .bookmark(returnBookMark.getFirst())
-                    .isBookmarked(false)
-                    .build();
+            bookmarkDto.put("isBookmarked", false);
         }
+        return bookmarkDto;
     }
 }

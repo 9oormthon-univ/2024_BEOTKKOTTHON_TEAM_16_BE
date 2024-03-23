@@ -9,10 +9,12 @@ import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.PopupType;
+import org.univ.dangol.repository.UserGradeRepository;
 import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,13 +36,14 @@ public class AdventureController {
     public LevelUpPopup levelUpController(@PathVariable("userId") Long userId){
         Grade grade = userService.getTopGrade(userId);
          if(adventureService.checkLevelUp(userId)){
+
              return LevelUpPopup.builder()
                      .tierImgUrl(grade.getTierImage())
                      .title(grade.getTier() + "Level UP!")
                      .grade(grade.getName())
                      .characterImgUrl(grade.getCharacterImage())
                      .description(
-                             "우와 벌써 트로피를" + "몇개" + "나 획득하셨군요 ?!\n" +
+                             "우와 벌써 트로피를" + (userService.getTopGrade(userId).getId() - 1) + "나 획득하셨군요 ?!\n" +
                                      grade.getName() + "이 되신 것을 축하드립니다!"
                      )  // 뱃지 갯수 넣기
                      //.latitude(11.111f) // 시장 상인회 위도 넣기
@@ -58,7 +61,23 @@ public class AdventureController {
     public TouchResponse touchTriggerController(@PathVariable("userId") Long id){
 
         Item item = adventureService.touchTrigger(id);
-        Item nextItem = itemService.findByItemIdNextItem(item);
+        Item nextItem = null;
+
+
+
+        if(item.getId() != 9)
+        {
+            nextItem = itemService.findByItemIdNextItem(item);
+        }
+        else{
+            // 임시 방편, 추후 수정해야 함
+            nextItem = Item.builder()
+                    .latitude(BigDecimal.valueOf(999.999))
+                    .longitude(BigDecimal.valueOf(999.999))
+                    .build();
+        }
+        log.warn("nextItem id :" + nextItem.getId());
+        log.warn("nextItem type : " + nextItem.getType());
 
         QuizPopup quizPopup = null;
         BadgePopup badgePopup = BadgePopup.builder()
