@@ -34,6 +34,7 @@ jobs:
           AWS_DB_USERNAME: ${{ secrets.AWS_DB_USERNAME }}
           AWS_DB_PASSWORD: ${{ secrets.AWS_DB_PASSWORD }}
           AWS_DB_URL: ${{ secrets.AWS_DB_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: ./gradlew clean build --warning-mode all
         shell: bash
 

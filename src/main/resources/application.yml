@@ -3,7 +3,10 @@ spring:
     username: ${aws_db_username}
     password: ${aws_db_password}
     url: ${aws_db_url}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: 1234
+#    url: jdbc:mysql://localhost:3306/test
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
       mode: never
@@ -15,10 +18,15 @@ spring:
         format_sql: true
         use_sql_comments: true
         hbm2ddl:
-          auto: update
+          auto: create
+          # auto: create-drop
+          # none or validate recommend on release DB
         default_batch_fetch_size: 1000
   servlet:
     multipart:
       enabled: true
       max-file-size: 100MB
       max-request-size: 300MB
+
+api:
+  key: ${api_key}
