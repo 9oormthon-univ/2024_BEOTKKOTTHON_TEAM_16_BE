@@ -24,6 +24,7 @@ public class ItemService {
     private final UserGradeRepository userGradeRepository;
 
 
+    @Transactional
     public Boolean trophyUseService(Long userId, Long gradeId){
 
         User user = userRepository.findById(userId).get();
@@ -32,8 +33,9 @@ public class ItemService {
 
         if(!userGrade.isUsed)
         {
-            userGrade.isUsed = true;
+            userGrade.setUsed(true);
             return true;
+
         }
         else{
             return false;
