@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Jacksonized
 @Getter
 @Setter
-public class BadgePosition {
+public class Position {
     private BigDecimal latitude;
     private BigDecimal longitude;
 }

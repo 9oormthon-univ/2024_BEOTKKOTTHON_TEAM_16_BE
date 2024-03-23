@@ -10,6 +10,6 @@ import java.util.List;
 @Setter
 public class ShopScreen {
     private List<ShopDTO> shops;
-    private BadgePosition badgePosition;
+    private Position position;
 }
 

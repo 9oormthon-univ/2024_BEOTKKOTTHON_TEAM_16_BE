@@ -5,14 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.univ.dangol.dto.BadgePosition;
+import org.univ.dangol.dto.Position;
 import org.univ.dangol.dto.ShopDTO;
 import org.univ.dangol.dto.ShopScreen;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.ShopService;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +26,9 @@ public class ShopController {
         List<ShopDTO> shopDTOList = shopService.getShopDTOs(userId);
         Optional<Item> nextItem = itemService.getNextItem(userId);
 
-        BadgePosition badgePosition = nextItem
+        Position position = nextItem
                 .filter(item -> item.getLatitude() != null && item.getLongitude() != null)
-                .map(item -> BadgePosition.builder()
+                .map(item -> Position.builder()
                         .longitude(item.getLongitude())
                         .latitude(item.getLatitude())
                         .build())
@@ -37,7 +36,7 @@ public class ShopController {
 
         return ShopScreen.builder()
                 .shops(shopDTOList)
-                .badgePosition(badgePosition)
+                .position(position)
                 .build();
     }
 }

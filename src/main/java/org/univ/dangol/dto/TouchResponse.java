@@ -19,7 +19,7 @@ public class TouchResponse {
     private Long itemId;
 
     // 다음 뱃지에 대한 정보를 제공한다.
-    private BadgePosition badgePosition;
+    private Position position;
 
     // badgePopup, App, Location, Quiz 모두 사용한다
     private BadgePopup badgePopup;

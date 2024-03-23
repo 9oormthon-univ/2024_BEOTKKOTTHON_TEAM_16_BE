@@ -9,7 +9,6 @@ import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.PopupType;
-import org.univ.dangol.repository.UserGradeRepository;
 import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
@@ -85,7 +84,7 @@ public class AdventureController {
                 .description(item.getPopupDescription())
                 .imgUrl(item.getImage())
                 .build();
-        BadgePosition badgePosition = BadgePosition.builder()
+        Position position = Position.builder()
                 .latitude(nextItem.getLatitude())
                 .longitude(nextItem.getLongitude())
                 .build();
@@ -112,7 +111,7 @@ public class AdventureController {
 
         return TouchResponse.builder()
                 .popupType(item.getType())
-                .badgePosition(badgePosition)
+                .position(position)
                 .itemId(item.getId())
                 .badgePopup(badgePopup)
                 .quizPopup(quizPopup)
