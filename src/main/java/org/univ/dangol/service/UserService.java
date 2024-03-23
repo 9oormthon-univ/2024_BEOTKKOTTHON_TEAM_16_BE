@@ -296,7 +296,7 @@ public class UserService {
         if(userGradeList.size() == 4){
             inputDescription = "축하합니다\n당신이 이 구역의 최고에요!";
         }else{
-            inputDescription = "조금만 더 시장을 탐험하면," + nextGradeText.orElse("마스터 등급") + "이 될 수 있어요!";
+            inputDescription = "조금만 더 시장을 탐험하면, " + nextGradeText.orElse("마스터 등급") + " 이(가) 될 수 있어요!";
         }
 
         return ProfileScreen.builder()
