@@ -610,8 +610,8 @@ public class DatabaseSeeding{
                         .name("구름톤 유니브")
                         .description("'밤샘 넘치는 구름톤 유니브를 추천드립니다.\n함께 해뜨는 걸 보시겠습니까?")
                         .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/billy.jpeg")
-                        .latitude(BigDecimal.valueOf(37.3517829))
-                        .longitude(BigDecimal.valueOf(127.0721455))
+                        .latitude(BigDecimal.valueOf(37.351783))
+                        .longitude(BigDecimal.valueOf(127.072146))
                         .address("서울특별시 송파구 마천로45길 23")
                         .build();
                 marketRepository.save(market);
