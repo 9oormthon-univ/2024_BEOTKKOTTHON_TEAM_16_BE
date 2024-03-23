@@ -31,6 +31,7 @@ public class MarketService {
     public MarketScreen marketScreen() {
         List<RecommendMarket> recommendMarketList = marketRepository.findAll().stream()
                 .map(MarketService::toRecommendMarket)
+                .limit(3) // 스트림의 결과를 처음 3개로 제한
                 .collect(Collectors.toList());
 
         return MarketScreen.builder().markets(recommendMarketList).build();

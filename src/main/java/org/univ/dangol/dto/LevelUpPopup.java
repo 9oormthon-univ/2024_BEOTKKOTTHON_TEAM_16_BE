@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-import java.math.BigDecimal;
 @SuperBuilder(toBuilder = true)
 @Jacksonized
 @Getter
@@ -24,5 +23,5 @@ public class LevelUpPopup {
     // 캐릭터 설명
     private String description;
     // 상인회 위도, 경도
-    private BadgePosition badgePosition;
+    private Position position;
 }

@@ -3,10 +3,7 @@ spring:
     username: ${aws_db_username}
     password: ${aws_db_password}
     url: ${aws_db_url}
-#    username: root
-#    password: 1234
-#    url: jdbc:mysql://localhost:3306/test
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
       mode: never
@@ -27,3 +24,6 @@ spring:
       enabled: true
       max-file-size: 100MB
       max-request-size: 300MB
+
+api:
+  key: ${api_key}
