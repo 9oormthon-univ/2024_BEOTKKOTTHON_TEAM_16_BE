@@ -15,6 +15,9 @@ public class TouchResponse {
     // APP, LOCATION, QUIZ
     private PopupType popupType;
 
+    // 아이템 ID
+    private Long itemId;
+
     // 다음 뱃지에 대한 정보를 제공한다.
     private BadgePosition badgePosition;
 
