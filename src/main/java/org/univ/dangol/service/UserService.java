@@ -223,11 +223,17 @@ public class UserService {
 
         List<UserGrade> userGradeList = userGradeRepository.findAllByUser(user);
         List<Reward> rewardList = new ArrayList<>();
+
+
         // 첫번째 grade에는 별도 보상이 없음. 제거할 것
         userGradeList.removeFirst();
 
+        // 하단 더미 트로피 제작용
+        int userGradeListSize = userGradeList.size();
+
         for (UserGrade userGrade : userGradeList) {
             Grade grade = userGrade.getGrade();
+            log.warn("Grade num" + grade.getId());
 
             // 사용되었는지 여부 확인 - 사용되었다면 리본을 묶을 것
             String trophyImage;
@@ -239,19 +245,20 @@ public class UserService {
                 trophyImage = grade.getTrophyImage();
             }
 
-            rewardList.add(Reward.builder()
-                    .id(grade.getId())  // 2, 3, 4로 진행되는 id index (1은 더미데이터)
-                    .isAcquired(true)
-                    .isUsed(userGrade.isUsed)
-                    .imgUrl(trophyImage)
-                    .build());
+                rewardList.add(Reward.builder()
+                        .id(grade.getId())  // 2, 3, 4로 진행되는 id index (1은 더미데이터)
+                        .isAcquired(true)
+                        .isUsed(userGrade.isUsed)
+                        .imgUrl(trophyImage)
+                        .build());
+
         }
 
         // 이미지를 가져오기 위한 임의의 grade 객체
         Grade grade = gradeRepository.findById(2L).get();
-        for (int i = 2; i < 5 - userGradeList.size(); i++) { // 인덱스가 2부터 시작함
+        for (int i = userGradeListSize + 1; i < 5 - userGradeList.size(); i++) { // 인덱스가 2부터 시작함
             rewardList.add(Reward.builder()
-                    .id((long) i)
+                    .id((long) i + 1)
                     .isAcquired(false)
                     .isUsed(false)
                     .imgUrl(grade.getTrophyEmptyImage())
