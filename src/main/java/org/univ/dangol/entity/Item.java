@@ -35,13 +35,13 @@ public class Item {
     @Column(length = 10)
     private String MarketName;
 
-    @Column(length = 30)
+    @Column(length = 50)
     private String popupDescription;
 
-    @Column(length = 30)
+    @Column(length = 50)
     private String profileDescription;
 
-    @Column(length = 30)
+    @Column(length = 50)
     private String questDescription;
 
     @Lob
