@@ -9,6 +9,8 @@ import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.Grade;
 import org.univ.dangol.entity.Item;
 import org.univ.dangol.entity.PopupType;
+import org.univ.dangol.entity.User;
+import org.univ.dangol.repository.UserGradeRepository;
 import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
@@ -45,6 +47,7 @@ public class AdventureController {
                      .tierImgUrl(grade.getTierImage())
                      .title(grade.getTier() + "Level UP!")
                      .grade(grade.getName())
+                     .level(userService.getTopGrade(userId).getId())
                      .characterImgUrl(grade.getCharacterImage())
                      .description(
                              "우와 벌써 트로피를" + (userService.getTopGrade(userId).getId() - 1) + "나 획득하셨군요 ?!\n" +
@@ -88,7 +91,7 @@ public class AdventureController {
                 .description(item.getPopupDescription())
                 .imgUrl(item.getImage())
                 .build();
-        Position position = Position.builder()
+        BadgePosition badgePosition = BadgePosition.builder()
                 .latitude(nextItem.getLatitude())
                 .longitude(nextItem.getLongitude())
                 .build();
@@ -115,7 +118,7 @@ public class AdventureController {
 
         return TouchResponse.builder()
                 .popupType(item.getType())
-                .position(position)
+                .badgePosition(badgePosition)
                 .itemId(item.getId())
                 .badgePopup(badgePopup)
                 .quizPopup(quizPopup)
