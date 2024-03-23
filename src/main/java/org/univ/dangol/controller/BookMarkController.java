@@ -38,12 +38,12 @@ public class BookMarkController {
         if(returnBookMark.getSecond().equals("created")){
             return BookmarkDto.builder()
                     .bookmark(returnBookMark.getFirst())
-                    .status("isBookmark = true")
+                    .isBookmarked(true)
                     .build();
         }else{ //deleted
             return BookmarkDto.builder()
                     .bookmark(returnBookMark.getFirst())
-                    .status("isBookmark = false")
+                    .isBookmarked(false)
                     .build();
         }
     }

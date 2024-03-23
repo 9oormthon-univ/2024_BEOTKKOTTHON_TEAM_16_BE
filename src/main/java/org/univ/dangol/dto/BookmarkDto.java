@@ -19,6 +19,6 @@ import org.univ.dangol.entity.BookMark;
 public class BookmarkDto {
     // 등록되면 created
     // 삭제되면 deleted
-    String status;
+    boolean isBookmarked;
     BookMark bookmark;
 }

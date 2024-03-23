@@ -23,7 +23,7 @@ public class ShopController {
     private final ShopService shopService;
     private final ItemService itemService;
     @GetMapping("users/{userId}/shopScreen")
-    public ShopScreen shopScreen(@PathVariable("userId") Long userId){
+    public ShopScreen shopScreen(@PathVariable("userId") Long userId) {
         List<ShopDTO> shopDTOList = shopService.getShopDTOs(userId);
         Optional<Item> nextItem = itemService.getNextItem(userId);
 
@@ -36,8 +36,8 @@ public class ShopController {
                 .orElse(null);
 
         return ShopScreen.builder()
-                 .shops(shopDTOList)
-                 .badgePosition(badgePosition)
-                 .build();
+                .shops(shopDTOList)
+                .badgePosition(badgePosition)
+                .build();
     }
 }
