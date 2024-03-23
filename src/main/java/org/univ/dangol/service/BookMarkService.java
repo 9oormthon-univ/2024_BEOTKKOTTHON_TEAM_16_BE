@@ -65,6 +65,7 @@ public class BookMarkService {
                 .category(shop.getCategory())
                 .latitude(shop.getLatitude())
                 .longitude(shop.getLongitude())
+                .tags(Arrays.asList(shop.getTag().split("-")))
                 .build();
     }
     @Transactional
