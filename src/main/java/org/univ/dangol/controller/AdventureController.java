@@ -37,8 +37,8 @@ public class AdventureController {
          if(adventureService.checkLevelUp(userId)){
 
              Position position = Position.builder()
-                     .latitude(BigDecimal.valueOf(37.3517829))
-                     .longitude(BigDecimal.valueOf(127.0721455))
+                     .latitude(BigDecimal.valueOf(37.3518562))
+                     .longitude(BigDecimal.valueOf(127.0717912))
                      .build();
 
              return LevelUpPopup.builder()
