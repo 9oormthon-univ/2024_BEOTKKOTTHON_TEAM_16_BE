@@ -30,7 +30,6 @@ public class AdventureService {
             PopupType.Quiz, PopupType.Location, PopupType.Quiz,
             PopupType.Quiz, PopupType.Location, PopupType.Location
     );
-
     /**
      * touchTrigger
      * 사용자가 특정 물체와 접촉했을 경우, 다음 이벤트를 사용자에게 반환하는 서비스입니다.

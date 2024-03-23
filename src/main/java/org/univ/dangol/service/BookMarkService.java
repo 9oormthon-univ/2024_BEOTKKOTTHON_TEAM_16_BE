@@ -4,14 +4,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.univ.dangol.dto.BookmarkScreen;
+import org.univ.dangol.dto.BookmarkedShop;
 import org.univ.dangol.entity.BookMark;
 import org.univ.dangol.entity.Shop;
 import org.univ.dangol.entity.User;
+import org.univ.dangol.exception.UserNotFoundException;
 import org.univ.dangol.repository.BookMarkRepository;
 import org.univ.dangol.repository.ShopRepository;
 import org.univ.dangol.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -48,4 +55,30 @@ public class BookMarkService {
             return deleted;
         }
     }
+    private BookmarkedShop toBookmarkedShop(BookMark bookMark){
+        Shop shop = bookMark.getShop();
+        return BookmarkedShop.builder()
+                .id(shop.getId())
+                .name(shop.getName())
+                .address(shop.getAddress())
+                .imgUrl(shop.getImage())
+                .category(shop.getCategory())
+                .latitude(shop.getLatitude())
+                .longitude(shop.getLongitude())
+                .tags(Arrays.asList(shop.getTag().split("-")))
+                .build();
+    }
+    @Transactional
+    public BookmarkScreen getBookmarkedShopsForUser(long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+        List<BookMark> bookMarkList = bookMarkRepository.findByUser(user);
+
+        List<BookmarkedShop> bookmarkedShopList = bookMarkList.stream()
+                .map(this::toBookmarkedShop)
+                .collect(Collectors.toList());
+
+        return BookmarkScreen.builder().shops(bookmarkedShopList).build();
+    }
+
 }

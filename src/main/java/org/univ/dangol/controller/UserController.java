@@ -36,11 +36,13 @@ public class UserController {
         Grade grade = userAndGrade.getSecond()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grade not found"));
 
+        int userItemCount = userService.getUserItemCount(nickName);
         return UserLoginDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .createAt(user.getCreatedAt())
                 .grade(grade.getId())
+                .getUserItemCount(userItemCount)
                 .build();
     }
 

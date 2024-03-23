@@ -25,7 +25,6 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // name length 확장
     @Column(length = 30)
     private String name;
 

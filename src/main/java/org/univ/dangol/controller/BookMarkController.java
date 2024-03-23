@@ -4,10 +4,12 @@ package org.univ.dangol.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.univ.dangol.dto.BookmarkDto;
+import org.univ.dangol.dto.BookmarkScreen;
 import org.univ.dangol.entity.BookMark;
 import org.univ.dangol.service.BookMarkService;
 
@@ -20,7 +22,6 @@ import java.util.Map;
 public class BookMarkController {
 
     private final BookMarkService bookMarkService;
-
     /**
      * setBookmark
      * 사용자가 북마크를 설정하는 기능
@@ -30,6 +31,10 @@ public class BookMarkController {
      * 보내야 하는 것은 해당 상점이 북마크로 지정되었는지 / 삭제되었는지
      * @return
      */
+    @GetMapping("/users/{userId}/bookmarks")
+    public BookmarkScreen bookmarkScreen(@PathVariable("userId") Long userId){
+        return bookMarkService.getBookmarkedShopsForUser(userId);
+    }
 
     // 별도 DTO
     @PostMapping("/users/{userId}/bookmarks/{shopId}")

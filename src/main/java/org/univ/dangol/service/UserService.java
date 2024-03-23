@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.*;
+import org.univ.dangol.exception.UserNotFoundException;
 import org.univ.dangol.repository.*;
 
 
@@ -27,7 +28,12 @@ public class UserService {
     private final UserGradeRepository userGradeRepository;
     private final ItemRepository itemRepository;
     private final UserItemRepository userItemRepository;
-
+    @Transactional
+    public int getUserItemCount(String nickName){
+        return userRepository.findByName(nickName)
+                .map(user -> userItemRepository.findAllByUser(user).size())
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + nickName));
+    }
     // 회원 가입
     @Transactional
     public Pair<Optional<User>, Optional<Grade>> join(String nickName) {
