@@ -45,12 +45,12 @@ public class AdventureController {
 
              return LevelUpPopup.builder()
                      .tierImgUrl(grade.getTierImage())
-                     .title(grade.getTier() + "Level UP!")
+                     .title(grade.getTier() + " Level UP!")
                      .grade(grade.getName())
                      .level(userService.getTopGrade(userId).getId())
                      .characterImgUrl(grade.getCharacterImage())
                      .description(
-                             "우와 벌써 트로피를" + (userService.getTopGrade(userId).getId() - 1) + "나 획득하셨군요 ?!\n" +
+                             "우와 벌써 트로피를 " + (userService.getTopGrade(userId).getId() - 1) + "개나 획득하셨군요!?\n" +
                                      grade.getName() + "이 되신 것을 축하드립니다!"
                      )  // 뱃지 갯수 넣기
                      .badgePosition(badgePosition)
