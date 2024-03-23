@@ -175,6 +175,7 @@ public class AdventureService {
             UserGrade userGrade = UserGrade.builder()
                     .user(user)
                     .grade(grade)
+                    .isUsed(false)
                     .build();
             userGradeRepository.save(userGrade);
         }

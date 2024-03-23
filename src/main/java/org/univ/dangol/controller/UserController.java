@@ -17,6 +17,8 @@ import org.univ.dangol.entity.User;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -27,6 +29,22 @@ public class UserController {
     private final UserService userService;
     private final ItemService itemService;
     // 회원 가입 - POST
+
+
+    @PostMapping("users/{userId}/trophy/{trophyId}")
+    public Map<String, Boolean> useTrophy(@PathVariable("userId") Long userId, @PathVariable("trophyId") Long trophyId){
+        // 사용자 id와 trophy
+
+        Map<String, Boolean> resultTrophy = new HashMap<String, Boolean>();
+        if(itemService.trophyUseService(userId, trophyId)){
+            resultTrophy.put("isFinished", true);
+            return resultTrophy;
+        }else{
+            resultTrophy.put("isFinished", false);
+            return resultTrophy;
+        }
+    }
+
     @PostMapping("users/{nickName}")
     public UserLoginDto join(@PathVariable("nickName") String nickName) {
         Pair<Optional<User>, Optional<Grade>> userAndGrade = userService.join(nickName);

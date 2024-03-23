@@ -231,7 +231,7 @@ public class UserService {
 
             // 사용되었는지 여부 확인 - 사용되었다면 리본을 묶을 것
             String trophyImage;
-            if (grade.isUsed) {
+            if (userGrade.isUsed) {
                 // 리본 묶인 트로피 이미지
                 trophyImage = grade.getTrophyRibbonImage();
             } else {
@@ -242,7 +242,7 @@ public class UserService {
             rewardList.add(Reward.builder()
                     .id(grade.getId())  // 2, 3, 4로 진행되는 id index (1은 더미데이터)
                     .isAcquired(true)
-                    .isUsed(grade.isUsed)
+                    .isUsed(userGrade.isUsed)
                     .imgUrl(trophyImage)
                     .build());
         }
@@ -332,18 +332,18 @@ public class UserService {
         // 각 Grade에 대한 음영처리 이미지도 삽입해야 한다.
         // 시간이 될 경우, 확장성 있게 다시 설계할 것
         if(grade.getId() == 1){ //1레벨 일 경우
-            returnProfileImageList.add("물음표 사진 입력");
+            returnProfileImageList.add(null);
             returnProfileImageList.add(gradeRepository.findById(1L).get().getCharacterImage());
-            returnProfileImageList.add(gradeRepository.findById(2L).get().getCharacterImage());
+            returnProfileImageList.add(gradeRepository.findById(2L).get().getCharacterEmptyImage());
         }else if(grade.getId() == 4){   //마지막 레벨일 경우
             returnProfileImageList.add(gradeRepository.findById(3L).get().getCharacterImage());
-            returnProfileImageList.add(gradeRepository.findById(4L).get().getCharacterImage());
-            returnProfileImageList.add("물음표 사진 입력");
+            returnProfileImageList.add(gradeRepository.findById(4L).get().getCharacterEmptyImage());
+            returnProfileImageList.add(null);
 
         }else{
             returnProfileImageList.add(gradeRepository.findById(grade.getId() - 1).get().getCharacterImage());
             returnProfileImageList.add(gradeRepository.findById(grade.getId()).get().getCharacterImage());
-            returnProfileImageList.add(gradeRepository.findById(grade.getId() + 1).get().getCharacterImage());
+            returnProfileImageList.add(gradeRepository.findById(grade.getId() + 1).get().getCharacterEmptyImage());
         }
         return returnProfileImageList;
     }
