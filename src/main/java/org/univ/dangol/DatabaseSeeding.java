@@ -44,7 +44,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 34번지")
                         .latitude(BigDecimal.valueOf(37.352125003015296))
                         .longitude(BigDecimal.valueOf(127.07120522898217))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("분식")
                         .tag("떡볶이-어묵")
                         .build();
@@ -57,7 +57,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 2번지")
                         .latitude(BigDecimal.valueOf(37.35218567779572))
                         .longitude(BigDecimal.valueOf(127.07144512970152))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("반찬가게")
                         .tag("김치-장아찌")
                         .build();
@@ -70,7 +70,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 3번지")
                         .latitude(BigDecimal.valueOf(37.35207739394533))
                         .longitude(BigDecimal.valueOf(127.07171026529826))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("정육점")
                         .tag("돼지고기-소고기")
                         .build();
@@ -83,7 +83,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 4번지")
                         .latitude(BigDecimal.valueOf(37.351897309612355))
                         .longitude(BigDecimal.valueOf(127.07150975497879))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("이불가게")
                         .tag("베개-이불")
                         .build();
@@ -96,7 +96,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 77번지")
                         .latitude(BigDecimal.valueOf(37.35178469474807))
                         .longitude(BigDecimal.valueOf(127.07148707478284))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("야채가게")
                         .tag("배추-토마토")
                         .build();
@@ -109,7 +109,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 123번지")
                         .latitude(BigDecimal.valueOf(37.351604487426094))
                         .longitude(BigDecimal.valueOf(127.07148972557167))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("만물상점")
                         .tag("호랑이-AK47")
                         .build();
@@ -122,7 +122,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 44번지")
                         .latitude(BigDecimal.valueOf(37.35179382592479))
                         .longitude(BigDecimal.valueOf(127.07128674469152))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("방앗간")
                         .tag("가래떡-무지개떡")
                         .build();
@@ -135,7 +135,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 321번지")
                         .latitude(BigDecimal.valueOf(37.35123487791715))
                         .longitude(BigDecimal.valueOf(127.0717997567674))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("포차")
                         .tag("전-동동주")
                         .build();
@@ -148,7 +148,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 34번지")
                         .latitude(BigDecimal.valueOf(37.35126391229903))
                         .longitude(BigDecimal.valueOf(127.07220892405834))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("국밥집")
                         .tag("돼지국밥-소국밥")
                         .build();
@@ -161,7 +161,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 25번지")
                         .latitude(BigDecimal.valueOf(37.35126391229903))
                         .longitude(BigDecimal.valueOf(127.07220892405834))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("국밥집")
                         .tag("돼지국밥-소국밥")
                         .build();
@@ -174,7 +174,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 176번지")
                         .latitude(BigDecimal.valueOf(37.35158125346711))
                         .longitude(BigDecimal.valueOf(127.07265222934058))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("국밥집")
                         .tag("돼지국밥-소국밥")
                         .build();
@@ -187,7 +187,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 726번지")
                         .latitude(BigDecimal.valueOf(37.35187402515536))
                         .longitude(BigDecimal.valueOf(127.07275409179769))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("과일")
                         .tag("사과-배")
                         .build();
@@ -200,7 +200,7 @@ public class DatabaseSeeding{
                         .address("카카오시 구름구 AI동 763번지")
                         .latitude(BigDecimal.valueOf(37.35229541165852))
                         .longitude(BigDecimal.valueOf(127.07250054623943))
-                        .image(" ")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/kakao.jpeg")
                         .category("점집")
                         .tag("운명-명운")
                         .build();

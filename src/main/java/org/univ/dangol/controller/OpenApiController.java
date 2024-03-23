@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.univ.dangol.dto.Position;
 
-import org.univ.dangol.dto.apiDto.Feature;
 import org.univ.dangol.entity.Market;
 import org.univ.dangol.service.OpenApiService;
 
