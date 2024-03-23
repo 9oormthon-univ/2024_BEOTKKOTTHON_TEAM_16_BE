@@ -21,8 +21,6 @@ public class LevelUpPopup {
     private String characterImgUrl;
     // 캐릭터 설명
     private String description;
-    // 상인회 위도
-    private BigDecimal latitude;
-    // 상인회 경도
-    private BigDecimal longitude;
+    // 상인회 위도, 경도
+    private BadgePosition badgePosition;
 }

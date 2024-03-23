@@ -37,6 +37,11 @@ public class AdventureController {
         Grade grade = userService.getTopGrade(userId);
          if(adventureService.checkLevelUp(userId)){
 
+             BadgePosition badgePosition = BadgePosition.builder()
+                     .latitude(BigDecimal.valueOf(37.49844468006748))
+                     .longitude(BigDecimal.valueOf(127.15125418549232))
+                     .build();
+
              return LevelUpPopup.builder()
                      .tierImgUrl(grade.getTierImage())
                      .title(grade.getTier() + "Level UP!")
@@ -46,8 +51,7 @@ public class AdventureController {
                              "우와 벌써 트로피를" + (userService.getTopGrade(userId).getId() - 1) + "나 획득하셨군요 ?!\n" +
                                      grade.getName() + "이 되신 것을 축하드립니다!"
                      )  // 뱃지 갯수 넣기
-                     //.latitude(11.111f) // 시장 상인회 위도 넣기
-                     //.longitude(11.111f) // 시장 상인회 경도 넣기
+                     .badgePosition(badgePosition)
                      .build();
          }else{
              return null;
