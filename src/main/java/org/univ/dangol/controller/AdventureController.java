@@ -35,7 +35,7 @@ public class AdventureController {
         Grade grade = userService.getTopGrade(userId);
          if(adventureService.checkLevelUp(userId)){
              return LevelUpPopup.builder()
-                     .tierImgUrl(grade.getTier())
+                     .tierImgUrl(grade.getTierImage())
                      .title(grade.getTier() + "Level UP!")
                      .grade(grade.getName())
                      .characterImgUrl(grade.getCharacterImage())
