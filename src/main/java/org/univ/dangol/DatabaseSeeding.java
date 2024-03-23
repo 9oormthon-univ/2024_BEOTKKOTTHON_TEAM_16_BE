@@ -607,9 +607,9 @@ public class DatabaseSeeding{
             if (marketRepository.findById(2L).isEmpty()) {
                 Market market = Market.builder()
                         .id(2L)
-                        .name("마천 시장")
-                        .description("'맛집으로 넘치는 마천 시장'을 추천드립니다.\n함께 마천 시장을 탐색하시겠습니까?")
-                        .image("http://modo.phinf.naver.net/20160324_75/1458803635350ff1q6_JPEG/mosaSEAY4j.jpeg?type=f530_353")
+                        .name("구름톤 유니브")
+                        .description("'밤샘 넘치는 구름톤 유니브를 추천드립니다.\n함께 해뜨는 걸 보시겠습니까?")
+                        .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/billy.jpeg")
                         .latitude(BigDecimal.valueOf(37.3518562))
                         .longitude(BigDecimal.valueOf(127.0717912))
                         .address("서울특별시 송파구 마천로45길 23")
