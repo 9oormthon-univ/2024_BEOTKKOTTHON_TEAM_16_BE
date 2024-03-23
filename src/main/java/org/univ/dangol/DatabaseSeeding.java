@@ -267,8 +267,8 @@ public class DatabaseSeeding{
                         .quizQuestion("마천 시장은 전문 시장이다.")
                         .quizPositive("O")
                         .quizNegative("X")
-                        .latitude(BigDecimal.valueOf(37.497487590252675f))
-                        .longitude(BigDecimal.valueOf(127.15083584189415))
+                        .latitude(BigDecimal.valueOf(37.3520873939453300))
+                        .longitude(BigDecimal.valueOf(127.0717102652982600))
                         .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Wheat.png")
                         .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/WheatShadow.png")
                         .build();

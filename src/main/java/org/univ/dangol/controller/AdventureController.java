@@ -39,8 +39,8 @@ public class AdventureController {
          if(adventureService.checkLevelUp(userId)){
 
              BadgePosition badgePosition = BadgePosition.builder()
-                     .latitude(BigDecimal.valueOf(37.49844468006748))
-                     .longitude(BigDecimal.valueOf(127.15125418549232))
+                     .latitude(BigDecimal.valueOf(37.3517946947480700))
+                     .longitude(BigDecimal.valueOf(127.0714870747828400))
                      .build();
 
              return LevelUpPopup.builder()
