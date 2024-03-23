@@ -52,8 +52,6 @@ public class Grade {
     @Column(length = 10)
     private String name;    // 장터 수호자
 
-    @Column
-    public boolean isUsed;
 
 
     // 고정 메시지 - 별도 저장 X

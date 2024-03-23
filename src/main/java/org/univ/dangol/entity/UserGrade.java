@@ -33,4 +33,9 @@ public class UserGrade {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Grade grade;
+
+    @Column
+    public boolean isUsed;
+
+
 }

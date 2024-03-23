@@ -4,9 +4,7 @@ package org.univ.dangol.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.univ.dangol.entity.Item;
-import org.univ.dangol.entity.User;
-import org.univ.dangol.entity.UserItem;
+import org.univ.dangol.entity.*;
 import org.univ.dangol.repository.*;
 
 import java.util.Collections;
@@ -24,6 +22,23 @@ public class ItemService {
     private final UserRepository userRepository;
     private final GradeRepository gradeRepository;
     private final UserGradeRepository userGradeRepository;
+
+
+    public Boolean trophyUseService(Long userId, Long gradeId){
+
+        User user = userRepository.findById(userId).get();
+        Grade grade = gradeRepository.findById(gradeId).get();
+        UserGrade userGrade = userGradeRepository.findByUserAndGrade(user, grade).get();
+
+        if(!userGrade.isUsed)
+        {
+            userGrade.isUsed = true;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public Item getItem(Long id){
         return itemRepository.findById(id).get();

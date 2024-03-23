@@ -46,7 +46,6 @@ public class DatabaseSeeding{
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
                         .trophyEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png")
                         .trophyRibbonImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png")
-                        .isUsed(true)
                         .build();
                 gradeRepository.save(grade);
             }
@@ -61,7 +60,6 @@ public class DatabaseSeeding{
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
                         .trophyEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png")
                         .trophyRibbonImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png")
-                        .isUsed(false)
                         .build();
                 gradeRepository.save(grade);
             }
@@ -76,7 +74,6 @@ public class DatabaseSeeding{
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
                         .trophyEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png")
                         .trophyRibbonImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png")
-                        .isUsed(false)
                         .build();
                 gradeRepository.save(grade);
             }
@@ -91,7 +88,6 @@ public class DatabaseSeeding{
                         .trophyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Trophy.png")
                         .trophyEmptyImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/TrophyShadow.png")
                         .trophyRibbonImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/usedTrophy.png")
-                        .isUsed(false)
                         .build();
                 gradeRepository.save(grade);
             }
