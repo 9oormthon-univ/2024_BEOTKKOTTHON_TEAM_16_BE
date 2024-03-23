@@ -34,6 +34,10 @@ public class DatabaseSeeding{
         private final ItemRepository itemRepository;
         private final MarketRepository marketRepository;
         private final ShopRepository shopRepository;
+
+        public void db9oormthonShopInit(){
+
+        }
         public void dbGradeInit(){
             if(gradeRepository.findById(1L).isEmpty()){
                 Grade grade = Grade.builder()
