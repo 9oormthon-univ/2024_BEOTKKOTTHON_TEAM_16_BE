@@ -41,10 +41,12 @@ public class AdventureService {
         // 사용자가 특정 물체와 접촉했을 경우 다음 이벤트가 발생한다.
 
         User user = userRepository.findById(id).get();
+        int userItemSize = userItemRepository.findAllByUser(user).size();
+
 
         // 우선, 다음에 발생시킬 이벤트는 사용자가 가진 아이템의 갯수로 판단한다.
         // zero-based, one-based 와 햇갈릴 가능성 체크할 것
-        List<UserItem> userItemList = userItemRepository.findByUser(user);
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user);
 
         int userGetItemSize = userItemList.size();                                  // 반환을 위해 별도 저장
         PopupType itemTrigger = itemSeq.get(userGetItemSize);                      // 모두 모았을 때 예외처리 필요
@@ -123,7 +125,7 @@ public class AdventureService {
         User user = userRepository.findById(userId).get();
 
         // 다음 아이템
-        List<UserItem> userItemList = userItemRepository.findByUser(user);
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user);
         Item item = itemRepository.findById((long) (userItemList.size() + 1)).get();
 
         if(item.getType() == PopupType.Quiz && item.getQuizPositive().equals(userResult)) {
@@ -150,8 +152,8 @@ public class AdventureService {
 
     public boolean checkLevelUp(Long userId){
         User user = userRepository.findById(userId).get();
-        int userItemSize = userItemRepository.findByUser(user).size();
-        int userGradeSize = userGradeRepository.findByUser(user).size();
+        int userItemSize = userItemRepository.findAllByUser(user).size();
+        int userGradeSize = userGradeRepository.findAllByUser(user).size();
 
         if(userItemSize % 3 != 0) // 레벨이 맞지 않을 경우
             return false;
@@ -163,12 +165,12 @@ public class AdventureService {
 
     @Transactional
     public void levelUpValidation(User user){
-        List<UserItem> userItems = userItemRepository.findByUser(user);
+        List<UserItem> userItems = userItemRepository.findAllByUser(user);
         int userItemSize = userItems.size();
 
         if(userItemSize % 3 == 0){
             // 뱃지가 3개 6개 9개 일 경우
-            List<UserGrade> userGradeList = userGradeRepository.findByUser(user);
+            List<UserGrade> userGradeList = userGradeRepository.findAllByUser(user);
             Grade grade = gradeRepository.findById(Long.valueOf(userGradeList.size() + 1)).get();
 
             UserGrade userGrade = UserGrade.builder()

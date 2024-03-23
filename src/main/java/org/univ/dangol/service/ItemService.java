@@ -34,7 +34,7 @@ public class ItemService {
     @Transactional(readOnly = true)
     public Optional<Item> getNextItem(Long userId){
         long nextItemId =  userRepository.findById(userId)
-                    .map(user -> userItemRepository.findByUser(user).size())
+                    .map(user -> userItemRepository.findAllByUser(user).size())
                     .orElse(0)+1 ; // 사용자가 없을 경우 0 반환
         return itemRepository.findById(nextItemId);
     }
@@ -47,7 +47,7 @@ public class ItemService {
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) return Collections.emptyList();
 
-        List<UserItem> userItemList = userItemRepository.findByUser(user.get());
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user.get());
 
         return userItemList.stream()
                 .map(UserItem::getItem)

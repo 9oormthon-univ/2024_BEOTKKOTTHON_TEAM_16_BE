@@ -2,6 +2,7 @@ package org.univ.dangol.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -83,7 +85,7 @@ public class UserService {
 
         // 몇번째 퀘스트인지 확인
         User user = userRepository.findById(user_id).get();
-        List<UserItem> userItemList = userItemRepository.findByUser(user);
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user);
         int userItemSize = userItemList.size();
         int userQuestLevel;
 
@@ -152,7 +154,7 @@ public class UserService {
     @Transactional
     public ProfileScreen showProfile(Long user_id) {
         User user = userRepository.findById(user_id).get();
-        List<UserItem> userItemList = userItemRepository.findByUser(user);
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user);
 
         // 상단 캐릭터 표시를 위한 기능
         List<String> userProfileImageList = getGradeImageList(user);
@@ -203,7 +205,7 @@ public class UserService {
 
         // [각 BookRow에 들어갈 Reward]
 
-        List<UserGrade> userGradeList = userGradeRepository.findByUser(user);
+        List<UserGrade> userGradeList = userGradeRepository.findAllByUser(user);
         List<Reward> rewardList = new ArrayList<>();
         // 첫번째 grade에는 별도 보상이 없음. 제거할 것
         userGradeList.removeFirst();
@@ -261,14 +263,24 @@ public class UserService {
         // ProfileScreen 생성
         UserGrade userTopGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).getFirst();
         Grade topGrade = userTopGrade.getGrade();
-        // Error
-        Grade nextGrade = gradeRepository.findById(topGrade.getId() + 1).get();
+        Grade nextGrade = null;
+
+        // Error -> 이후 코드 조정할 것 // 너무 brute
+        if (userGradeRepository.findAllByUser(user).size() < 4){
+            log.warn("사용자 등급 소유 갯수" + userGradeList.size());
+            nextGrade = gradeRepository.findById(topGrade.getId() + 1).get();
+        }else{
+            nextGrade = Grade.builder()
+                    .name("empty")
+                    .build();
+        }
+        Optional<String> nextGradeText = Optional.of(nextGrade.getName());
 
         String inputDescription;
         if(userGradeList.size() == 4){
             inputDescription = "축하합니다\n당신이 이 구역의 최고에요!";
         }else{
-            inputDescription = "조금만 더 시장을 탐험하면," + nextGrade.getName() + "이 될 수 있어요!";
+            inputDescription = "조금만 더 시장을 탐험하면," + nextGradeText.orElse("마스터 등급") + "이 될 수 있어요!";
         }
 
         return ProfileScreen.builder()
@@ -293,7 +305,6 @@ public class UserService {
         User user = userRepository.findById(userId).get();
         return userGradeRepository.findByUserOrderByGradeIdDesc(user).get(0).getGrade();
     }
-
     public List<String> getGradeImageList(User user){
         //유저 등급 기준 앞 뒤 레벨을 가져오는 메서드
         //유저가 가진 등급 중 가장 높은 등급을 가져온다.
@@ -320,7 +331,6 @@ public class UserService {
         }
         return returnProfileImageList;
     }
-
 
     public Optional<User> getUserById(Long id){
         return userRepository.findById(id);
