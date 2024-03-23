@@ -36,6 +36,162 @@ public class DatabaseSeeding{
         private final ShopRepository shopRepository;
 
         public void db9oormthonShopInit(){
+            if (shopRepository.findById(1L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(1L)
+                        .name("라이언네 분식집")
+                        .address("카카오시 구름구 AI동 34번지")
+                        .latitude(BigDecimal.valueOf(37.352125003015296))
+                        .longitude(BigDecimal.valueOf(127.07120522898217))
+                        .image(" ")
+                        .category("분식")
+                        .tag("떡볶이-어묵")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(2L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(2L)
+                        .name("프로도네 반찬가게")
+                        .address("카카오시 구름구 AI동 2번지")
+                        .latitude(BigDecimal.valueOf(37.35218567779572))
+                        .longitude(BigDecimal.valueOf(127.07144512970152))
+                        .image(" ")
+                        .category("반찬가게")
+                        .tag("김치-장아찌")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(3L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(3L)
+                        .name("튜브네 정육점")
+                        .address("카카오시 구름구 AI동 3번지")
+                        .latitude(BigDecimal.valueOf(37.35207739394533))
+                        .longitude(BigDecimal.valueOf(127.07171026529826))
+                        .image(" ")
+                        .category("정육점")
+                        .tag("돼지고기-소고기")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(4L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(4L)
+                        .name("콘과 무지의 이불가게")
+                        .address("카카오시 구름구 AI동 4번지")
+                        .latitude(BigDecimal.valueOf(37.351897309612355))
+                        .longitude(BigDecimal.valueOf(127.07150975497879))
+                        .image(" ")
+                        .category("이불가게")
+                        .tag("베개-이불")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(5L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(5L)
+                        .name("네오네 야채가게")
+                        .address("카카오시 구름구 AI동 77번지")
+                        .latitude(BigDecimal.valueOf(37.35178469474807))
+                        .longitude(BigDecimal.valueOf(127.07148707478284))
+                        .image(" ")
+                        .category("야채가게")
+                        .tag("배추-토마토")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(6L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(6L)
+                        .name("제이-지의 만물상점")
+                        .address("카카오시 구름구 AI동 123번지")
+                        .latitude(BigDecimal.valueOf(37.351604487426094))
+                        .longitude(BigDecimal.valueOf(127.07148972557167))
+                        .image(" ")
+                        .category("만물상점")
+                        .tag("호랑이-AK47")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(7L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(7L)
+                        .name("춘식이네 방앗간")
+                        .address("카카오시 구름구 AI동 44번지")
+                        .latitude(BigDecimal.valueOf(37.35179382592479))
+                        .longitude(BigDecimal.valueOf(127.07128674469152))
+                        .image(" ")
+                        .category("방앗간")
+                        .tag("가래떡-무지개떡")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(8L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(8L)
+                        .name("구르미네 하늘포차")
+                        .address("카카오시 구름구 AI동 321번지")
+                        .latitude(BigDecimal.valueOf(37.35123487791715))
+                        .longitude(BigDecimal.valueOf(127.0717997567674))
+                        .image(" ")
+                        .category("포차")
+                        .tag("전-동동주")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(9L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(9L)
+                        .name("팬다 주니어의 국밥집")
+                        .address("카카오시 구름구 AI동 76번지")
+                        .latitude(BigDecimal.valueOf(37.35126391229903))
+                        .longitude(BigDecimal.valueOf(127.07220892405834))
+                        .image(" ")
+                        .category("국밥집")
+                        .tag("돼지국밥-소국밥")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(10L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(9L)
+                        .name("스카피의 이상한 족발집")
+                        .address("카카오시 구름구 AI동 76번지")
+                        .latitude(BigDecimal.valueOf(37.35126391229903))
+                        .longitude(BigDecimal.valueOf(127.07220892405834))
+                        .image(" ")
+                        .category("국밥집")
+                        .tag("돼지국밥-소국밥")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(11L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(9L)
+                        .name("팬다 주니어의 국밥집")
+                        .address("카카오시 구름구 AI동 76번지")
+                        .latitude(BigDecimal.valueOf(37.35126391229903))
+                        .longitude(BigDecimal.valueOf(127.07220892405834))
+                        .image(" ")
+                        .category("국밥집")
+                        .tag("돼지국밥-소국밥")
+                        .build();
+                shopRepository.save(shop);
+            }
+            if (shopRepository.findById(12L).isEmpty()){
+                Shop shop = Shop.builder()
+                        .id(9L)
+                        .name("팬다 주니어의 국밥집")
+                        .address("카카오시 구름구 AI동 76번지")
+                        .latitude(BigDecimal.valueOf(37.35126391229903))
+                        .longitude(BigDecimal.valueOf(127.07220892405834))
+                        .image(" ")
+                        .category("국밥집")
+                        .tag("돼지국밥-소국밥")
+                        .build();
+                shopRepository.save(shop);
+            }
 
         }
         public void dbGradeInit(){
@@ -297,6 +453,7 @@ public class DatabaseSeeding{
                         .build();
                 marketRepository.save(market);
             }
+
 
         }
 
