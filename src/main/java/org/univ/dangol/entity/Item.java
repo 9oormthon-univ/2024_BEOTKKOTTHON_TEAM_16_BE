@@ -66,8 +66,12 @@ public class Item {
     @Column(length = 50)
     private String quizTitle;
 
-    @Column(length = 255)
-    private String quizWarningImage;
+    @Column(length = 10)
+    private String quizWarningImageText;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String quizWarningImage;    // 호랑이 이미지
 
     @Column(length = 50)
     private String quizQuestion;

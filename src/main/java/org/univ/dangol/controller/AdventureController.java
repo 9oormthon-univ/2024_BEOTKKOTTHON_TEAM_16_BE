@@ -92,8 +92,8 @@ public class AdventureController {
         if(item.getType() == PopupType.Quiz){
             QuizWarningPopup quizWarningPopup = QuizWarningPopup.builder()
                     .title(item.getQuizTitle())
-                    .name("어흥어흥")
-                    .image("어흥이 사진")
+                    .name(item.getQuizWarningImageText())
+                    .image(item.getQuizWarningImage())
                     .confirm(item.getQuizConfirmText())
                     .build();
 
@@ -113,6 +113,7 @@ public class AdventureController {
         return TouchResponse.builder()
                 .popupType(item.getType())
                 .badgePosition(badgePosition)
+                .itemId(item.getId())
                 .badgePopup(badgePopup)
                 .quizPopup(quizPopup)
                 .build();
