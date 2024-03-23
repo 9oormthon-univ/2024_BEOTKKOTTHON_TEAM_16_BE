@@ -22,7 +22,6 @@ public class BookMarkService {
     private final UserRepository userRepository;
     private final ShopRepository shopRepository;
 
-
     @Transactional
     public Pair<BookMark, String> setBookmark(Long user_id, Long shop_id){
 
@@ -31,7 +30,6 @@ public class BookMarkService {
 
         //userId와 shopId를 통해 해당 bookmark가 있는지 확인한다.
         Optional<BookMark> bookmark = bookMarkRepository.findByUserAndShop(user, shop);
-
 
         if(bookmark.isEmpty()){
             //bookmark가 없으면 북마크 지정을 성공했다는 메시지를 보낸다.

@@ -16,9 +16,7 @@ import java.math.BigDecimal;
 @Component
 @RequiredArgsConstructor
 public class DatabaseSeeding{
-
     private final DatabaseSeedingService dbSeedingService;
-
     @PostConstruct
     public void init(){
         // 개발자에 의해 진행되어야 하는 데이터베이스 시딩, Bean 생성 단계에서 수행
@@ -27,8 +25,6 @@ public class DatabaseSeeding{
         dbSeedingService.dbMarketInit();
         dbSeedingService.dbShopInit();
     }
-
-
     @Component
     @Transactional
     @RequiredArgsConstructor
@@ -38,7 +34,6 @@ public class DatabaseSeeding{
         private final ItemRepository itemRepository;
         private final MarketRepository marketRepository;
         private final ShopRepository shopRepository;
-
         public void dbGradeInit(){
             if(gradeRepository.findById(1L).isEmpty()){
                 Grade grade = Grade.builder()
@@ -103,6 +98,7 @@ public class DatabaseSeeding{
         }
 
         public void dbItemInit(){
+
             if (itemRepository.findById(1L).isEmpty()) {
                 Item item = Item.builder()
                         .Id(1L)
@@ -223,7 +219,6 @@ public class DatabaseSeeding{
                         .latitude(BigDecimal.valueOf(37.498921855945575))
                         .longitude(BigDecimal.valueOf(127.15048044919968))
                         .build();
-                // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
             if (itemRepository.findById(8L).isEmpty()) {
@@ -239,7 +234,6 @@ public class DatabaseSeeding{
                         .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Jeon.png")
                         .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/JeonShadow.png")
                         .build();
-                // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
             if (itemRepository.findById(9L).isEmpty()) {
@@ -255,7 +249,6 @@ public class DatabaseSeeding{
                         .image("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/Fruitbasket.png")
                         .unactivatedImage("https://groomthonimagebucket.s3.ap-northeast-2.amazonaws.com/FruitbasketShadow.png")
                         .build();
-                // 위도 경도 추후 추가할 것
                 itemRepository.save(item);
             }
         }
@@ -302,10 +295,12 @@ public class DatabaseSeeding{
         }
 
         public void dbShopInit(){
+            Market machenMarket = marketRepository.findById(2L).get();
             if (shopRepository.findById(1L).isEmpty()){
                 Shop shop = Shop.builder()
                         .id(1L)
                         .name("맛있는반찬")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 26-1")
                         .latitude(BigDecimal.valueOf(37.498014860517756))
                         .longitude(BigDecimal.valueOf(127.15093314233705))
@@ -319,6 +314,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(2L)
                         .name("춘천 닭발")
+                        .market(machenMarket)
                         .address("서울 송파구 성내천로32길 22")
                         .latitude(BigDecimal.valueOf(37.49791542117659))
                         .longitude(BigDecimal.valueOf(127.15119021370128))
@@ -332,6 +328,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(3L)
                         .name("삼성상회")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 26")
                         .latitude(BigDecimal.valueOf(37.49789109172456))
                         .longitude(BigDecimal.valueOf(127.15083959700209))
@@ -345,6 +342,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(4L)
                         .name("종로 떡집")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 24-8")
                         .latitude(BigDecimal.valueOf(37.49774215163447))
                         .longitude(BigDecimal.valueOf(127.15105416103837))
@@ -358,6 +356,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(5L)
                         .name("충남 떡집")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 24-10")
                         .latitude(BigDecimal.valueOf(37.49769247350385))
                         .longitude(BigDecimal.valueOf(127.15115018410617))
@@ -371,6 +370,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(6L)
                         .name("불타는 포차")
+                        .market(machenMarket)
                         .address("서울 송파구 성내천로32길 24")
                         .latitude(BigDecimal.valueOf(37.49778459832357))
                         .longitude(BigDecimal.valueOf(127.15132848051788))
@@ -384,6 +384,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(7L)
                         .name("소문난 곱창")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 33")
                         .latitude(BigDecimal.valueOf(37.497576029121376))
                         .longitude(BigDecimal.valueOf(127.15061279155681))
@@ -397,6 +398,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(8L)
                         .name("암사직화쪽갈비")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 35 1층")
                         .latitude(BigDecimal.valueOf(37.49752627559298))
                         .longitude(BigDecimal.valueOf(127.15076818459264))
@@ -410,6 +412,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(9L)
                         .name("착한 밥집")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 37")
                         .latitude(BigDecimal.valueOf(37.497424789998604))
                         .longitude(BigDecimal.valueOf(127.15086410335246))
@@ -423,6 +426,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(10L)
                         .name("종로 회집")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로 22길 39")
                         .latitude(BigDecimal.valueOf(37.49735027661575))
                         .longitude(BigDecimal.valueOf(127.15100531035682))
@@ -436,6 +440,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(11L)
                         .name("원조 토속 순대국")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 40")
                         .latitude(BigDecimal.valueOf(37.49725354157809))
                         .longitude(BigDecimal.valueOf(127.15090899300218))
@@ -449,6 +454,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(12L)
                         .name("LOTO")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 41-1")
                         .latitude(BigDecimal.valueOf(37.497232856858226))
                         .longitude(BigDecimal.valueOf(127.15123124461337))
@@ -462,6 +468,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(13L)
                         .name("설렁탕 우정")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 33")
                         .latitude(BigDecimal.valueOf(37.49703241254866))
                         .longitude(BigDecimal.valueOf(127.15120822339195))
@@ -475,6 +482,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(14L)
                         .name("오가커피")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 25-1 오가커피")
                         .latitude(BigDecimal.valueOf(37.49697247213188))
                         .longitude(BigDecimal.valueOf(127.15052111144493))
@@ -488,6 +496,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(15L)
                         .name("Cafe헤븐")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 23 2층 cafe헤븐")
                         .latitude(BigDecimal.valueOf(37.49707428835461))
                         .longitude(BigDecimal.valueOf(127.15016509771279))
@@ -501,6 +510,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(16L)
                         .name("고바우약국")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 21")
                         .latitude(BigDecimal.valueOf(37.49711052604031))
                         .longitude(BigDecimal.valueOf(127.15000967817556))
@@ -514,6 +524,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(17L)
                         .name("보이걸주니어")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 28")
                         .latitude(BigDecimal.valueOf(37.49683058209316))
                         .longitude(BigDecimal.valueOf(127.15050669106513))
@@ -527,6 +538,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(18L)
                         .name("밥이랑찌개랑")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 28")
                         .latitude(BigDecimal.valueOf(37.4967582531304))
                         .longitude(BigDecimal.valueOf(127.15070161689593))
@@ -540,6 +552,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(19L)
                         .name("마당호프")
+                        .market(machenMarket)
                         .address("서울 송파구 성내천로 222")
                         .latitude(BigDecimal.valueOf(37.499515763839256))
                         .longitude(BigDecimal.valueOf(127.15212076833261))
@@ -553,6 +566,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(20L)
                         .name("정선유통")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 45")
                         .latitude(BigDecimal.valueOf(37.49943699523425))
                         .longitude(BigDecimal.valueOf(127.15206689142373))
@@ -566,6 +580,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(21L)
                         .name("마천골")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 44")
                         .latitude(BigDecimal.valueOf(37.49934116173424))
                         .longitude(BigDecimal.valueOf(127.15214585905004))
@@ -579,6 +594,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(22L)
                         .name("별찌소곱창")
+                        .market(machenMarket)
                         .address("서울 송파구 성내천로 224 1층")
                         .latitude(BigDecimal.valueOf(37.4994727567486))
                         .longitude(BigDecimal.valueOf(127.15228324612526))
@@ -592,6 +608,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(23L)
                         .name("명량핫도그")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 41 1층")
                         .latitude(BigDecimal.valueOf(37.499252562367474))
                         .longitude(BigDecimal.valueOf(127.15185447668266))
@@ -605,6 +622,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(24L)
                         .name("민속빈대떡")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 42")
                         .latitude(BigDecimal.valueOf(37.49920272534332))
                         .longitude(BigDecimal.valueOf(127.15207348437048))
@@ -618,6 +636,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(25L)
                         .name("미래원축산물직판장")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 40-1")
                         .latitude(BigDecimal.valueOf(37.49920272534332))
                         .longitude(BigDecimal.valueOf(127.15207348437048))
@@ -631,6 +650,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(26L)
                         .name("연심이네")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 39-1 (마천동) 연심이네")
                         .latitude(BigDecimal.valueOf(37.499170532909424))
                         .longitude(BigDecimal.valueOf(127.15170870942563))
@@ -644,6 +664,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(27L)
                         .name("부산어묵")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 39")
                         .latitude(BigDecimal.valueOf(37.49908166593081))
                         .longitude(BigDecimal.valueOf(127.15162512714103))
@@ -657,6 +678,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(28L)
                         .name("원이네순대국")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 38 마천중앙시장 상인회129호")
                         .latitude(BigDecimal.valueOf(37.498861952051456))
                         .longitude(BigDecimal.valueOf(127.15169818995695))
@@ -670,6 +692,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(29L)
                         .name("장충동한방족발 노랑앞치마")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 37")
                         .latitude(BigDecimal.valueOf(37.498970246611016))
                         .longitude(BigDecimal.valueOf(127.15156270347312))
@@ -683,6 +706,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(30L)
                         .name("권순화보쌈족발")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 35-1")
                         .latitude(BigDecimal.valueOf(37.498869014294485))
                         .longitude(BigDecimal.valueOf(127.15146071983771))
@@ -696,6 +720,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(31L)
                         .name("빨간모자반찬")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 35 1층")
                         .latitude(BigDecimal.valueOf(37.49881616552294))
                         .longitude(BigDecimal.valueOf(127.15139417405229))
@@ -709,6 +734,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(32L)
                         .name("장충동한방족발")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 34")
                         .latitude(BigDecimal.valueOf(37.49868315520597))
                         .longitude(BigDecimal.valueOf(127.15148154835839))
@@ -722,6 +748,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(33L)
                         .name("수빈이네반찬가게")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로51가길 28")
                         .latitude(BigDecimal.valueOf(37.4986406871728))
                         .longitude(BigDecimal.valueOf(127.1512241885812))
@@ -735,6 +762,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(34L)
                         .name("화성이불")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로51가길 26")
                         .latitude(BigDecimal.valueOf(37.49854703067524))
                         .longitude(BigDecimal.valueOf(127.15136253168934))
@@ -748,6 +776,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(35L)
                         .name("진미곱창")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로51가길 23")
                         .latitude(BigDecimal.valueOf(37.49847278844964))
                         .longitude(BigDecimal.valueOf(127.15129170232667))
@@ -761,6 +790,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(36L)
                         .name("옛날산골통닭")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로51가길 27 1층 옛날산골통닭")
                         .latitude(BigDecimal.valueOf(37.498568700990695))
                         .longitude(BigDecimal.valueOf(127.15115053662997))
@@ -774,6 +804,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(37L)
                         .name("일도불백")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 30")
                         .latitude(BigDecimal.valueOf(37.498347886461474))
                         .longitude(BigDecimal.valueOf(127.15120380789303))
@@ -787,6 +818,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(38L)
                         .name("주병이김")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 31")
                         .latitude(BigDecimal.valueOf(37.498420199977964))
                         .longitude(BigDecimal.valueOf(127.15102160069286))
@@ -800,6 +832,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(39L)
                         .name("굿뜨래밤")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 18")
                         .latitude(BigDecimal.valueOf(37.497507595951056))
                         .longitude(BigDecimal.valueOf(127.1504020318885))
@@ -813,6 +846,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(40L)
                         .name("다래홍두깨손칼국수")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 17")
                         .latitude(BigDecimal.valueOf(37.49755631980098))
                         .longitude(BigDecimal.valueOf(127.15017030364648))
@@ -826,6 +860,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(41L)
                         .name("장원보쌈")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 15")
                         .latitude(BigDecimal.valueOf(37.49738524411886))
                         .longitude(BigDecimal.valueOf(127.15007949261259))
@@ -839,6 +874,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(42L)
                         .name("쌀마을")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로51가길 24")
                         .latitude(BigDecimal.valueOf(37.49845897083777))
                         .longitude(BigDecimal.valueOf(127.15152774396749))
@@ -852,6 +888,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(43L)
                         .name("슈즈아이")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 14")
                         .latitude(BigDecimal.valueOf(37.49721739271688))
                         .longitude(BigDecimal.valueOf(127.15011025516586))
@@ -865,6 +902,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(44L)
                         .name("마천새마음금고 본점")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 13 새마을금고")
                         .latitude(BigDecimal.valueOf(37.49718507051331))
                         .longitude(BigDecimal.valueOf(127.14984302650608))
@@ -878,6 +916,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(45L)
                         .name("오꾸꼬 마천점")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 20")
                         .latitude(BigDecimal.valueOf(37.496939806862635))
                         .longitude(BigDecimal.valueOf(127.14963757006157))
@@ -891,6 +930,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(46L)
                         .name("벧엘 칼국수")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로41길 22")
                         .latitude(BigDecimal.valueOf(37.496846195205165))
                         .longitude(BigDecimal.valueOf(127.14974198668374))
@@ -904,6 +944,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(47L)
                         .name("오리바베큐")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 23")
                         .latitude(BigDecimal.valueOf(37.49809068041351))
                         .longitude(BigDecimal.valueOf(127.1506505783393))
@@ -917,6 +958,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(48L)
                         .name("마천루")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 30 1층")
                         .latitude(BigDecimal.valueOf(37.49776505022307))
                         .longitude(BigDecimal.valueOf(127.14987669763624))
@@ -930,6 +972,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(49L)
                         .name("송천엄마손칼국수")
+                        .market(machenMarket)
                         .address("서울 송파구 마천로45길 8 1층")
                         .latitude(BigDecimal.valueOf(37.49670211704138))
                         .longitude(BigDecimal.valueOf(127.1496766753882))
@@ -943,6 +986,7 @@ public class DatabaseSeeding{
                 Shop shop = Shop.builder()
                         .id(50L)
                         .name("시장통 횟집")
+                        .market(machenMarket)
                         .address("서울 송파구 거마로22길 32")
                         .latitude(BigDecimal.valueOf(37.49758690108936))
                         .longitude(BigDecimal.valueOf(127.15003466182766))
@@ -952,7 +996,6 @@ public class DatabaseSeeding{
                         .build();
                 shopRepository.save(shop);
             }
-
         }
     }
 }

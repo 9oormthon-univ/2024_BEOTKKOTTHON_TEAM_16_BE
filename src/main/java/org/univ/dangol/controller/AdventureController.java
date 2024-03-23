@@ -20,12 +20,9 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class AdventureController {
-
     private final UserService userService;
     private final AdventureService adventureService;
     private final ItemService itemService;
-
-
     /**
      * levelUpController
      * 클라이언트에서 레벨업이라고 판단 시, 해당 API에 요청을 시도한다
@@ -33,7 +30,6 @@ public class AdventureController {
      * location -> 클라이언트가 판단 및 호출
      * quiz -> quizValidation 완료 후 서버가 판단.
      */
-
     @PostMapping("users/{userId}/levelUp")
     public LevelUpPopup levelUpController(@PathVariable("userId") Long userId){
         Grade grade = userService.getTopGrade(userId);
@@ -54,12 +50,10 @@ public class AdventureController {
              return null;
          }
     }
-
     /**
      * touchTriggerController
      * 마커와의 터치 발생 시, 발생하는 컨트롤러
      */
-
     @PostMapping("users/{userId}/touch")
     public TouchResponse touchTriggerController(@PathVariable("userId") Long id){
 
@@ -72,12 +66,10 @@ public class AdventureController {
                 .description(item.getPopupDescription())
                 .imgUrl(item.getImage())
                 .build();
-
         BadgePosition badgePosition = BadgePosition.builder()
                 .latitude(nextItem.getLatitude())
                 .longitude(nextItem.getLongitude())
                 .build();
-
         if(item.getType() == PopupType.Quiz){
             QuizWarningPopup quizWarningPopup = QuizWarningPopup.builder()
                     .title(item.getQuizTitle())
@@ -110,10 +102,9 @@ public class AdventureController {
     @PostMapping("users/{user_id}/answer/{answer}")
     public Map<String, Boolean> getQuizAnswer(
             @PathVariable("user_id") Long id,
-            @PathVariable("answer") String answer){
-
+            @PathVariable("answer") String answer
+    ){
         Map<String, Boolean> response = new HashMap<>();
-
         if(adventureService.quizValidation(answer, id))
         {
             if(adventureService.checkLevelUp(id)){
@@ -128,7 +119,6 @@ public class AdventureController {
             response.put("isCollect", false);
             response.put("isLevelUp", false);
         }
-
         return response;
     }
 }

@@ -32,13 +32,16 @@ public class Item {
     @Column(length = 10)
     private String name;
 
-    @Column(length = 50)
+    @Column(length = 10)
+    private String MarketName;
+
+    @Column(length = 30)
     private String popupDescription;
 
-    @Column(length = 50)
+    @Column(length = 30)
     private String profileDescription;
 
-    @Column(length = 50)
+    @Column(length = 30)
     private String questDescription;
 
     @Lob
@@ -66,11 +69,6 @@ public class Item {
     @Column(length = 255)
     private String quizWarningImage;
 
-
-//    고정 메세지 - 별도 저장 X
-//    @Column(length = 50)
-//    private String quizDescription; (아래 문제를 맞추어.. 해결해보세요!)
-
     @Column(length = 50)
     private String quizQuestion;
 
@@ -79,14 +77,4 @@ public class Item {
 
     @Column(length = 10)
     private String quizNegative;
-
-
-//    // 고정 메시지 - 별도 저장 X
-//    private String positive; (이어서 탐험하기)
-//    private String negative; (도감 완성하기)
-
-//    ID를 통해 판단할 수 있어 제외했다.
-//    @Column(length = 10)
-//    private String category;
-
 }
