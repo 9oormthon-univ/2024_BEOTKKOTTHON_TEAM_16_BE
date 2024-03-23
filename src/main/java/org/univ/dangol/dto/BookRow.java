@@ -20,5 +20,4 @@ import java.util.List;
 public class BookRow {
     List<Badge> badges;
     Reward reward;
-
 }
