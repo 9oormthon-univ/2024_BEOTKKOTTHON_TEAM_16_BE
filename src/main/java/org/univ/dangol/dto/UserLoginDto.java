@@ -14,4 +14,5 @@ public class UserLoginDto {
     private String name;
     private LocalDateTime createAt;
     private Long grade;
+    private int getUserItemCount;
 }

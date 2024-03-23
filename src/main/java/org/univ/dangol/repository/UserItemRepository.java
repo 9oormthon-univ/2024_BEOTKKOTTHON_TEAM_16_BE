@@ -6,9 +6,8 @@ import org.univ.dangol.entity.User;
 import org.univ.dangol.entity.UserItem;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserItemRepository extends JpaRepository<UserItem, Long> {
-    List<UserItem> findByUser(@NonNull User user);
+    List<UserItem> findAllByUser(@NonNull User user);
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.univ.dangol.dto.*;
 import org.univ.dangol.entity.*;
+import org.univ.dangol.exception.UserNotFoundException;
 import org.univ.dangol.repository.*;
 
 
@@ -25,7 +26,12 @@ public class UserService {
     private final UserGradeRepository userGradeRepository;
     private final ItemRepository itemRepository;
     private final UserItemRepository userItemRepository;
-
+    @Transactional
+    public int getUserItemCount(String nickName){
+        return userRepository.findByName(nickName)
+                .map(user -> userItemRepository.findAllByUser(user).size())
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + nickName));
+    }
     // 회원 가입
     @Transactional
     public Pair<Optional<User>, Optional<Grade>> join(String nickName) {
@@ -83,7 +89,7 @@ public class UserService {
 
         // 몇번째 퀘스트인지 확인
         User user = userRepository.findById(user_id).get();
-        List<UserItem> userItemList = userItemRepository.findByUser(user);
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user);
         int userItemSize = userItemList.size();
         int userQuestLevel;
 
@@ -152,7 +158,7 @@ public class UserService {
     @Transactional
     public ProfileScreen showProfile(Long user_id) {
         User user = userRepository.findById(user_id).get();
-        List<UserItem> userItemList = userItemRepository.findByUser(user);
+        List<UserItem> userItemList = userItemRepository.findAllByUser(user);
 
         // 상단 캐릭터 표시를 위한 기능
         List<String> userProfileImageList = getGradeImageList(user);
