@@ -25,7 +25,8 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10)
+    // name length 확장
+    @Column(length = 30)
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)

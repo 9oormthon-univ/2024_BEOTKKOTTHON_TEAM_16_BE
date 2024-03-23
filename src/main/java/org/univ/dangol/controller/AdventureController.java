@@ -13,6 +13,7 @@ import org.univ.dangol.service.AdventureService;
 import org.univ.dangol.service.ItemService;
 import org.univ.dangol.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,7 +59,22 @@ public class AdventureController {
     public TouchResponse touchTriggerController(@PathVariable("userId") Long id){
 
         Item item = adventureService.touchTrigger(id);
-        Item nextItem = itemService.findByItemIdNextItem(item);
+        Item nextItem = null;
+
+
+        if(item.getId() != 9)
+        {
+            nextItem = itemService.findByItemIdNextItem(item);
+        }
+        else{
+            // 임시 방편, 추후 수정해야 함
+            nextItem = Item.builder()
+                    .latitude(BigDecimal.valueOf(999.999))
+                    .longitude(BigDecimal.valueOf(999.999))
+                    .build();
+        }
+        log.warn("nextItem id :" + nextItem.getId());
+        log.warn("nextItem type : " + nextItem.getType());
 
         QuizPopup quizPopup = null;
         BadgePopup badgePopup = BadgePopup.builder()

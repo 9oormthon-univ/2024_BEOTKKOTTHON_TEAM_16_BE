@@ -261,6 +261,7 @@ public class UserService {
         // ProfileScreen 생성
         UserGrade userTopGrade = userGradeRepository.findByUserOrderByGradeIdDesc(user).getFirst();
         Grade topGrade = userTopGrade.getGrade();
+        // Error
         Grade nextGrade = gradeRepository.findById(topGrade.getId() + 1).get();
 
         String inputDescription;
